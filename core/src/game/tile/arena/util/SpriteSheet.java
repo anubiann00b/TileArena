@@ -12,7 +12,7 @@ public class SpriteSheet {
     private Texture texture;
     private TextureRegion[] images;
 
-    public static final SpriteSheet SHIP_VARIANT_1 = new SpriteSheet("ship_Sprite1.png",23,32);
+    public static final SpriteSheet PLAYER_DOWN = new SpriteSheet("player_down.png",16,16);
 
     public SpriteSheet(String path, int width, int height) {
         texture = new Texture(path);
@@ -25,5 +25,15 @@ public class SpriteSheet {
 
     public Animation getAnim(float frameSpeed) {
         return new Animation(frameSpeed, images);
+    }
+
+    public TextureRegion getImage() {
+        return getImage(0);
+    }
+
+    public TextureRegion getImage(int index) {
+        if (index<0 || index>images.length)
+            return null;
+        return images[index];
     }
 }

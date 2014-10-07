@@ -13,12 +13,13 @@ public class EntitySprite {
 
     private Animation[] animations;
     private int animSpeed;
-    private int currentFrame;
+    private int directionFacing;
     private int count;
 
     public EntitySprite(String filePrefix, int fps) {
         animations = new Animation[4];
         animSpeed = fps;
+        directionFacing = 0;
         loadAnim(filePrefix + "_right.png", 0);
         loadAnim(filePrefix + "_up.png", 0);
         loadAnim(filePrefix + "_left.png", 0);
@@ -31,7 +32,11 @@ public class EntitySprite {
 
     public void render(SpriteBatch batch, int delta, Position p, Position s) {
         count += delta;
-        batch.draw(animations[currentFrame].getKeyFrame(count, true), p.x, p.y, s.x, s.y);
+        batch.draw(animations[directionFacing].getKeyFrame(count, true), p.x, p.y, s.x, s.y);
+    }
+
+    public void setDirection(int dir) {
+        directionFacing = dir;
     }
 
     private void loadAnim(String file, int dir) {

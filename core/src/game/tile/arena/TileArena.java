@@ -26,7 +26,7 @@ public class TileArena extends ApplicationAdapter {
 		batch = new SpriteBatch();
         objects = new ArrayList<Entity>();
 
-        objects.add(new Player("player", 166));
+        objects.add(new Player());
 	}
 
 	@Override

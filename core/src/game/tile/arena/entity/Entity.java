@@ -10,6 +10,10 @@ public abstract class Entity implements Comparable<Entity> {
     private EntitySprite sprite;
     public Position pos;
 
+    public Entity(String filePrefix) {
+        this(filePrefix, 166);
+    }
+
     public Entity(String filePrefix, int animSpeed) {
         sprite = new EntitySprite(filePrefix, animSpeed);
         pos = new Position(128, 128);

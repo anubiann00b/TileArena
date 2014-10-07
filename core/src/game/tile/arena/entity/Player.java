@@ -2,8 +2,8 @@ package game.tile.arena.entity;
 
 public class Player extends Entity {
 
-    public Player(String filePrefix, int animSpeed) {
-        super(filePrefix, animSpeed);
+    public Player() {
+        super("player");
     }
 
     @Override

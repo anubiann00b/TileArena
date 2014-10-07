@@ -14,6 +14,7 @@ public class EntitySprite {
     private Animation[] animations;
     private int animSpeed;
     private int currentFrame;
+    private int count;
 
     public EntitySprite(String filePrefix, int fps) {
         animations = new Animation[4];
@@ -29,7 +30,8 @@ public class EntitySprite {
     }
 
     public void render(SpriteBatch batch, int delta, Position p, Position s) {
-        batch.draw(animations[currentFrame].getKeyFrame(10, true), p.x, p.y, s.x, s.y);
+        count += delta;
+        batch.draw(animations[currentFrame].getKeyFrame(count, true), p.x, p.y, s.x, s.y);
     }
 
     private void loadAnim(String file, int dir) {

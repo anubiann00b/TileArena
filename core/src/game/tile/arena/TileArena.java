@@ -9,29 +9,32 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import game.tile.arena.object.GameObject;
-import game.tile.arena.object.Player;
+import game.tile.arena.entity.Entity;
+import game.tile.arena.entity.Player;
 import game.tile.arena.util.Position;
 
 public class TileArena extends ApplicationAdapter {
 
 	SpriteBatch batch;
-    List<GameObject> objects;
+    List<Entity> objects;
     long last;
 
 	@Override
 	public void create() {
-		batch = new SpriteBatch();
-        objects = new ArrayList<GameObject>();
+        last = System.currentTimeMillis();
 
-        objects.add(new Player(new Position(32, 32)));
+		batch = new SpriteBatch();
+        objects = new ArrayList<Entity>();
+
+        objects.add(new Player("player", 166));
 	}
 
 	@Override
 	public void render() {
         long temp = System.currentTimeMillis();
-        for (GameObject o : objects)
-            o.update((int)(temp-last));
+        int delta = (int)(temp-last);
+        for (Entity o : objects)
+            o.update(delta);
         last = temp;
 
 		Gdx.gl.glClearColor(1, 0, 0, 1);
@@ -39,8 +42,8 @@ public class TileArena extends ApplicationAdapter {
 		batch.begin();
 
         Collections.sort(objects);
-        for (GameObject o : objects)
-            o.render(batch);
+        for (Entity o : objects)
+            o.render(batch, delta);
 
 		batch.end();
 	}

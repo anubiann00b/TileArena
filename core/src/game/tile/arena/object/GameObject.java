@@ -1,5 +1,8 @@
 package game.tile.arena.object;
 
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -14,9 +17,12 @@ public abstract class GameObject implements Comparable<GameObject> {
     public Position pos;
     protected List<SpriteSheet> sprites;
 
-    public GameObject(Position p) {
+    public GameObject(Position p, Texture img) {
         pos = p;
         sprites = new ArrayList<SpriteSheet>();
+        Sprite sprite = new Sprite(img);
+        sprite.setSize(sprite.getWidth() * 4, sprite.getHeight() *4);
+        sprite.setOrigin(sprite.getWidth()/2, sprite.getHeight()/2);
     }
 
     public abstract void update(int delta);

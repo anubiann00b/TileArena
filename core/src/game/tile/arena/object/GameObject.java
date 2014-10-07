@@ -14,7 +14,8 @@ public abstract class GameObject implements Comparable<GameObject> {
     public Position pos;
     protected List<SpriteSheet> sprites;
 
-    public GameObject() {
+    public GameObject(Position p) {
+        pos = p;
         sprites = new ArrayList<SpriteSheet>();
     }
 

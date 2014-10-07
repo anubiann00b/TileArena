@@ -11,6 +11,7 @@ import java.util.List;
 
 import game.tile.arena.object.GameObject;
 import game.tile.arena.object.Player;
+import game.tile.arena.util.Position;
 
 public class TileArena extends ApplicationAdapter {
 
@@ -23,7 +24,7 @@ public class TileArena extends ApplicationAdapter {
 		batch = new SpriteBatch();
         objects = new ArrayList<GameObject>();
 
-        objects.add(new Player());
+        objects.add(new Player(new Position(32, 32)));
 	}
 
 	@Override

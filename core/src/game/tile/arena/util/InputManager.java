@@ -4,8 +4,21 @@ import com.badlogic.gdx.Gdx;
 
 public class InputManager {
 
-    public static boolean isPressed() {
-        return Gdx.input.isTouched();
+    private static boolean touched;
+    private static boolean released;
+    private static boolean pressed;
+
+    public static boolean isTouched() { return touched; }
+    public static boolean isReleased() { return released; }
+    public static boolean isPressed() { return pressed;  }
+
+    public static void update() {
+        boolean nTouched = Gdx.input.isTouched();
+
+        pressed = nTouched && !isTouched();
+        released = isTouched() && !nTouched;
+
+        touched = nTouched;
     }
 
     public static Position getCursor() {

@@ -11,6 +11,7 @@ import java.util.List;
 
 import game.tile.arena.entity.Entity;
 import game.tile.arena.entity.Player;
+import game.tile.arena.util.InputManager;
 import game.tile.arena.util.Position;
 
 public class TileArena extends ApplicationAdapter {
@@ -33,6 +34,9 @@ public class TileArena extends ApplicationAdapter {
 	public void render() {
         long temp = System.currentTimeMillis();
         int delta = (int)(temp-last);
+
+        InputManager.update();
+
         for (Entity o : objects)
             o.update(delta);
         last = temp;

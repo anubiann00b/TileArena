@@ -7,7 +7,7 @@ import game.tile.arena.util.Position;
 
 public abstract class Entity implements Comparable<Entity> {
 
-    private EntitySprite sprite;
+    protected EntitySprite sprite;
     public Position pos;
 
     public Entity(String filePrefix) {
@@ -16,7 +16,7 @@ public abstract class Entity implements Comparable<Entity> {
 
     public Entity(String filePrefix, int animSpeed) {
         sprite = new EntitySprite(filePrefix, animSpeed);
-        pos = new Position(128, 128);
+        pos = new Position(300, 300);
     }
 
     public abstract void update(int delta);

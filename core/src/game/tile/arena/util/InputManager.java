@@ -9,10 +9,13 @@ public class InputManager {
     private static boolean pressed;
     private static boolean held;
 
+    private static Position currentPosition;
+
     public static boolean isTouched() { return touched; }
     public static boolean isReleased() { return released; }
     public static boolean isPressed() { return pressed; }
     public static boolean isHeld() { return held; }
+    public static Position getCursor() { return currentPosition; }
 
     public static void update() {
         boolean nTouched = Gdx.input.isTouched();
@@ -21,10 +24,8 @@ public class InputManager {
         released = touched && !nTouched;
         held = nTouched && touched;
 
-        touched = nTouched;
-    }
+        currentPosition = new Position(Gdx.input.getX(), Gdx.graphics.getHeight()-Gdx.input.getY());
 
-    public static Position getCursor() {
-        return new Position(Gdx.input.getX(), Gdx.graphics.getHeight()-Gdx.input.getY());
+        touched = nTouched;
     }
 }

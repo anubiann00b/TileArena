@@ -20,10 +20,10 @@ public class EntitySprite {
         animations = new Animation[4];
         animSpeed = fps;
         directionFacing = 0;
-        loadAnim(filePrefix + "_right.png", 0);
-        loadAnim(filePrefix + "_up.png", 0);
-        loadAnim(filePrefix + "_left.png", 0);
-        loadAnim(filePrefix + "_down.png", 0);
+        this.loadAnim(filePrefix + "_right.png", 0);
+        this.loadAnim(filePrefix + "_up.png", 0);
+        this.loadAnim(filePrefix + "_left.png", 0);
+        this.loadAnim(filePrefix + "_down.png", 0);
     }
 
     public void render(SpriteBatch batch, int delta, Position p) {

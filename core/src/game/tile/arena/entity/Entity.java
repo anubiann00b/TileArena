@@ -16,7 +16,7 @@ public abstract class Entity implements Comparable<Entity> {
 
     public Entity(String filePrefix, int animSpeed) {
         sprite = new EntitySprite(filePrefix, animSpeed);
-        pos = new Position(300, 300);
+        pos = new Position(0, 0);
     }
 
     public abstract void update(int delta);

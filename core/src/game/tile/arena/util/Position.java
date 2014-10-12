@@ -14,8 +14,12 @@ public class Position {
         return new Position(x*scale, y*scale);
     }
 
+    private Position translate(Position pos) {
+        return new Position(x-pos.x, y-pos.y);
+    }
+
     public boolean inRange(float dist, Position pos) {
-        return dist*dist < (pos.x-x)*(pos.x-x) + (pos.y-y)*(pos.y-y);
+        return (pos.x-x)*(pos.x-x) + (pos.y-y)*(pos.y-y) < dist*dist;
     }
 
     public Position limit(float dist, Position pos) {
@@ -24,6 +28,6 @@ public class Position {
 
         Position offset = new Position(x-pos.x, y-pos.y);
         float distance = (float)Math.sqrt(offset.x*offset.x + offset.y*offset.y);
-        return offset.scale(distance/dist);
+        return this.translate(offset.scale(dist/distance));
     }
 }

@@ -1,5 +1,6 @@
 package game.tile.arena.entity;
 
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
@@ -14,21 +15,24 @@ public class Player extends Entity {
 
     public Player() {
         super("player");
-        movementStickCenter = new Position(100, 100);
-        movementStickCurrent = new Position(100, 100);
+        movementStickCenter = new Position(300, 300);
+        movementStickCurrent = new Position(300, 300);
     }
 
     @Override
     public void update(int delta) {
         if (InputManager.isPressed()) {
-            if (movementStickCenter.inRange(50, InputManager.getCursor())) {
+            if (movementStickCenter.inRange(100, InputManager.getCursor())) {
                 movementStickCaptured = true;
                 movementStickCurrent = InputManager.getCursor();
             }
         } else if (InputManager.isHeld()) {
             if (movementStickCaptured) {
-                movementStickCenter = movementStickCenter.limit(50, InputManager.getCursor());
+                movementStickCurrent = movementStickCenter.limit(100, InputManager.getCursor());
             }
+        } else if (InputManager.isReleased()) {
+            movementStickCaptured = false;
+            movementStickCurrent = movementStickCenter;
         }
     }
 

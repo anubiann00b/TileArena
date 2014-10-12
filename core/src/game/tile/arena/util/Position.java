@@ -10,11 +10,15 @@ public class Position {
         this.y = y;
     }
 
+    public Position(int scale) {
+        this(scale, scale);
+    }
+
     public Position scale(float scale) {
         return new Position(x*scale, y*scale);
     }
 
-    private Position translate(Position pos) {
+    public Position subtract(Position pos) {
         return new Position(x-pos.x, y-pos.y);
     }
 
@@ -28,6 +32,6 @@ public class Position {
 
         Position offset = new Position(x-pos.x, y-pos.y);
         float distance = (float)Math.sqrt(offset.x*offset.x + offset.y*offset.y);
-        return this.translate(offset.scale(dist/distance));
+        return this.subtract(offset.scale(dist / distance));
     }
 }

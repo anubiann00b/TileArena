@@ -12,21 +12,22 @@ import java.util.List;
 import game.tile.arena.entity.Entity;
 import game.tile.arena.entity.Player;
 import game.tile.arena.util.InputManager;
+import game.tile.arena.util.Joystick;
 import game.tile.arena.util.Position;
 
 public class TileArena extends ApplicationAdapter {
 
-	SpriteBatch batch;
-    List<Entity> objects;
     long last;
+    SpriteBatch batch;
+    List<Entity> objects;
 
 	@Override
 	public void create() {
         last = System.currentTimeMillis();
 
 		batch = new SpriteBatch();
-        objects = new ArrayList<Entity>();
 
+        objects = new ArrayList<Entity>();
         objects.add(new Player());
 	}
 

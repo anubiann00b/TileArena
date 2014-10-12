@@ -22,7 +22,7 @@ public class Joystick {
     }
 
     public Position getPosition() {
-        return center.subtract(position);
+        return position.subtract(center);
     }
 
     public void update(int delta) {

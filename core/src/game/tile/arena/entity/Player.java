@@ -12,7 +12,6 @@ public class Player extends Entity {
 
     private Joystick movementStick;
 
-
     public Player() {
         super("player");
         movementStick = new Joystick(new Position(300, 300), 100, "circle.png", "joystick_bg.png");
@@ -21,7 +20,7 @@ public class Player extends Entity {
     @Override
     public void update(int delta) {
         movementStick.update(delta);
-        pos = pos.subtract(movementStick.getPosition().scale(1f/delta));
+        updatePosition(movementStick.getPosition().scale(1f/delta));
     }
 
     @Override

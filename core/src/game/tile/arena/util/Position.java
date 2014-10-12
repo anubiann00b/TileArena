@@ -2,8 +2,8 @@ package game.tile.arena.util;
 
 public class Position {
 
-    public float x;
-    public float y;
+    public final float x;
+    public final float y;
 
     public Position(float x, float y) {
         this.x = x;
@@ -14,13 +14,9 @@ public class Position {
         this(scale, scale);
     }
 
-    public Position scale(float scale) {
-        return new Position(x*scale, y*scale);
-    }
-
-    public Position subtract(Position pos) {
-        return new Position(x-pos.x, y-pos.y);
-    }
+    public Position scale(float scale) { return new Position(x*scale, y*scale); }
+    public Position subtract(Position pos) { return new Position(x-pos.x, y-pos.y); }
+    public Position add(Position pos) { return new Position(x+pos.x, y+pos.y); }
 
     public boolean inRange(float dist, Position pos) {
         return (pos.x-x)*(pos.x-x) + (pos.y-y)*(pos.y-y) < dist*dist;

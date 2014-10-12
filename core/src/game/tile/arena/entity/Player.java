@@ -21,6 +21,7 @@ public class Player extends Entity {
     @Override
     public void update(int delta) {
         movementStick.update(delta);
+        pos = pos.subtract(movementStick.getPosition().scale(1f/delta));
     }
 
     @Override

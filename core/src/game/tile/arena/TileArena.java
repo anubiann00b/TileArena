@@ -25,6 +25,8 @@ public class TileArena extends ApplicationAdapter {
 	public void create() {
         last = System.currentTimeMillis();
 
+        Joystick.init();
+
 		batch = new SpriteBatch();
 
         objects = new ArrayList<Entity>();
@@ -37,6 +39,7 @@ public class TileArena extends ApplicationAdapter {
         int delta = (int)(temp-last);
 
         InputManager.update();
+        Joystick.update(delta);
 
         for (Entity o : objects)
             o.update(delta);
@@ -49,6 +52,8 @@ public class TileArena extends ApplicationAdapter {
         Collections.sort(objects);
         for (Entity o : objects)
             o.render(batch, delta);
+
+        Joystick.render(batch, delta);
 
 		batch.end();
 	}

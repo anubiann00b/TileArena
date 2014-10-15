@@ -10,22 +10,17 @@ import game.tile.arena.util.Position;
 
 public class Player extends Entity {
 
-    private Joystick movementStick;
-
     public Player() {
         super("player");
-        movementStick = new Joystick(new Position(300, 300), 100, "circle.png", "joystick_bg.png");
     }
 
     @Override
     public void update(int delta) {
-        movementStick.update(delta);
-        updatePosition(movementStick.getPosition().scale(1f/delta));
+        updatePosition(Joystick.getPosition(Joystick.MOVEMENT).scale(1f/delta));
     }
 
     @Override
     public void render(SpriteBatch batch, int delta) {
         super.render(batch, delta);
-        movementStick.render(batch, delta);
     }
 }

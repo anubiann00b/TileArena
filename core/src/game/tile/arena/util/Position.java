@@ -55,8 +55,14 @@ public class Position {
         return x>-padding && y>-padding && x<Game.WORLD.x+padding && y<Game.WORLD.y+padding;
     }
 
-    public boolean inView(int padding) {
-        return x>-padding && y>-padding && x<Game.SCREEN.x+padding && y<Game.SCREEN.y+padding;
+    public boolean inView(int pad) {
+        float cx = Game.camera.position.x;
+        float cy = Game.camera.position.y;
+
+        float sx = Game.SCREEN.x/2;
+        float sy = Game.SCREEN.y/2;
+
+        return x>cx-sx-pad && y>cy-sy-pad && x<cx+sx+pad && y<cy+sy+pad;
     }
 
     public Position scaleY(double sy) {

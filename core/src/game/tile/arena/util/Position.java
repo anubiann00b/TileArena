@@ -2,6 +2,8 @@ package game.tile.arena.util;
 
 import com.badlogic.gdx.Gdx;
 
+import game.tile.arena.Game;
+
 public class Position {
 
     public final float x;
@@ -49,8 +51,8 @@ public class Position {
         return Math.atan2(y, x);
     }
 
-    public boolean inScreen(int padding) {
-        return x>-padding && y>-padding && x<Gdx.graphics.getWidth()+padding && y<Gdx.graphics.getHeight()+padding;
+    public boolean inWorld(int padding) {
+        return x>-padding && y>-padding && x<Game.WORLD.x+padding && y<Game.WORLD.y+padding;
     }
 
     public Position scaleY(double sy) {

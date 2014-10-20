@@ -18,7 +18,7 @@ public class Player extends Entity {
 
         Position attack = Game.joysticks.getPosition(Game.joysticks.ATTACK);
         if (!attack.isZero()) {
-            Game.projectiles.add(new LinearProjectile("arrow", pos, new Position(attack.getDir(), 1f)));
+            Game.projectiles.add(new LinearProjectile("arrow", pos, new Position(attack.getDir(), 8)));
         }
     }
 

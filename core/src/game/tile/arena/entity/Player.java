@@ -1,12 +1,8 @@
 package game.tile.arena.entity;
 
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
-import game.tile.arena.util.InputManager;
-import game.tile.arena.util.Joystick;
-import game.tile.arena.util.Position;
+import game.tile.arena.Game;
 
 public class Player extends Entity {
 
@@ -16,7 +12,7 @@ public class Player extends Entity {
 
     @Override
     public void update(int delta) {
-        updatePosition(Joystick.getPosition(Joystick.MOVEMENT).scale(1f/delta));
+        updatePosition(Game.joysticks.getPosition(Game.joysticks.MOVEMENT).scale(1f/delta));
     }
 
     @Override

@@ -11,9 +11,6 @@ import java.util.List;
 
 import game.tile.arena.entity.Entity;
 import game.tile.arena.entity.Player;
-import game.tile.arena.util.InputManager;
-import game.tile.arena.util.Joystick;
-import game.tile.arena.util.Position;
 
 public class TileArena extends ApplicationAdapter {
 
@@ -25,7 +22,8 @@ public class TileArena extends ApplicationAdapter {
 	public void create() {
         last = System.currentTimeMillis();
 
-        Joystick.init();
+        Game.input.init();
+        Game.joysticks.init();
 
 		batch = new SpriteBatch();
 
@@ -38,8 +36,8 @@ public class TileArena extends ApplicationAdapter {
         long temp = System.currentTimeMillis();
         int delta = (int)(temp-last);
 
-        InputManager.update();
-        Joystick.update(delta);
+        Game.input.update();
+        Game.joysticks.update(delta);
 
         for (Entity o : objects)
             o.update(delta);
@@ -53,7 +51,7 @@ public class TileArena extends ApplicationAdapter {
         for (Entity o : objects)
             o.render(batch, delta);
 
-        Joystick.render(batch, delta);
+        Game.joysticks.render(batch, delta);
 
 		batch.end();
 	}

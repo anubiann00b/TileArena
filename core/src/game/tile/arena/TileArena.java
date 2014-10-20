@@ -5,9 +5,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
+import java.util.Iterator;
 
 import game.tile.arena.entity.Entity;
 import game.tile.arena.entity.Player;
@@ -38,8 +37,12 @@ public class TileArena extends ApplicationAdapter {
 
         for (Entity o : Game.objects)
             o.update(delta);
-        for (Projectile p : Game.projectiles)
-            p.update(delta);
+        for (Iterator<Projectile> it = Game.projectiles.listIterator(); it.hasNext();) {
+            Projectile p = it.next();
+            boolean inScreen = p.update(delta);
+            if (!inScreen)
+                it.remove();
+        }
         last = temp;
 
 		Gdx.gl.glClearColor(1, 1, 1, 1);

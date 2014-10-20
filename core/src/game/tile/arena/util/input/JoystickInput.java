@@ -3,8 +3,8 @@ package game.tile.arena.util.input;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 
-import game.tile.arena.util.joystick.Joystick;
 import game.tile.arena.util.Position;
+import game.tile.arena.util.joystick.Joystick;
 
 public class JoystickInput implements InputProcessor {
 

@@ -1,7 +1,5 @@
 package game.tile.arena.util;
 
-import com.badlogic.gdx.Gdx;
-
 import game.tile.arena.Game;
 
 public class Position {

@@ -9,10 +9,8 @@ import java.util.Collections;
 import java.util.Iterator;
 
 import game.tile.arena.entity.Entity;
-import game.tile.arena.entity.Player;
 import game.tile.arena.entity.projectile.Projectile;
 import game.tile.arena.util.MathHelper;
-import game.tile.arena.util.Position;
 
 public class TileArena extends ApplicationAdapter {
 

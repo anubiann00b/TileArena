@@ -2,26 +2,34 @@ package game.tile.arena.entity;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import game.tile.arena.Game;
 import game.tile.arena.entity.attack.Attack;
 import game.tile.arena.entity.attack.AttackBow;
-import game.tile.arena.entity.projectile.LinearProjectile;
 import game.tile.arena.util.Position;
 
 public class Player extends Entity {
 
-    private Attack attack;
+    private Attack currentAttack;
+    private List<Attack> attackList = new LinkedList<Attack>();
 
     public Player(Position p) {
         super("player", p);
-        attack = new AttackBow(400);
+        addAttack(new AttackBow(400));
+    }
+
+    public void addAttack(Attack a) {
+        if (currentAttack == null)
+            currentAttack = a;
+        attackList.add(a);
     }
 
     @Override
     public void update(int delta) {
         updatePosition(Game.joysticks.getPosition(Game.joysticks.MOVEMENT).scale(delta*speed));
-
-        attack.update(delta);
+        currentAttack.update(delta);
     }
 
     @Override

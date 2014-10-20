@@ -25,6 +25,8 @@ public class TileArena extends ApplicationAdapter {
 
         Game.input.init();
         Game.joysticks.init();
+        Game.hudCam.position.set(Game.SCREEN.x/2, Game.SCREEN.y/2, 0);
+        Game.hudCam.update();
 
 		batch = new SpriteBatch();
 
@@ -50,6 +52,7 @@ public class TileArena extends ApplicationAdapter {
         for (Projectile p : Game.projectiles)
             p.render(batch);
 
+        batch.setProjectionMatrix(Game.hudCam.combined);
         Game.joysticks.render(batch, delta);
 
 		batch.end();

@@ -20,6 +20,7 @@ public class Game {
     public static final Position SCREEN = new Position(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
     public static final OrthographicCamera camera = new OrthographicCamera(SCREEN.x, SCREEN.y);
+    public static final OrthographicCamera hudCam = new OrthographicCamera(SCREEN.x, SCREEN.y);
 
     public static final World world = World.getInstance();
 

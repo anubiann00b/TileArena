@@ -20,10 +20,11 @@ public abstract class Projectile {
     public abstract void render(SpriteBatch batch);
 
     public void draw(SpriteBatch batch, float dir) {
-        sprite.render(batch, pos, 4, dir);
+        draw(batch, 4, dir);
     }
 
     public void draw(SpriteBatch batch, float scale, float dir) {
-        sprite.render(batch, pos, scale, dir);
+        if (pos.inView(64))
+            sprite.render(batch, pos, scale, dir);
     }
 }

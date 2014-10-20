@@ -55,6 +55,10 @@ public class Position {
         return x>-padding && y>-padding && x<Game.WORLD.x+padding && y<Game.WORLD.y+padding;
     }
 
+    public boolean inView(int padding) {
+        return x>-padding && y>-padding && x<Game.SCREEN.x+padding && y<Game.SCREEN.y+padding;
+    }
+
     public Position scaleY(double sy) {
         return new Position(x, y*sy);
     }

@@ -3,10 +3,6 @@ package game.tile.arena.util;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import game.tile.arena.Game;
-import game.tile.arena.sprite.Image;
-import game.tile.arena.util.input.JoystickInput;
-
 public class JoystickManager {
 
     private static JoystickManager joystickManager;

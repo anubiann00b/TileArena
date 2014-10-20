@@ -60,7 +60,7 @@ public class Joystick {
     }
 
     void renderStick(SpriteBatch batch, int delta) {
-        bg.render(batch, center, radius / bg.getWidth());
-        stick.render(batch, position, 4);
+        bg.renderNoCamera(batch, center, radius / bg.getWidth());
+        stick.renderNoCamera(batch, position, 4);
     }
 }

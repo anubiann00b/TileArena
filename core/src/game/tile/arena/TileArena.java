@@ -11,6 +11,7 @@ import java.util.Iterator;
 import game.tile.arena.entity.Entity;
 import game.tile.arena.entity.Player;
 import game.tile.arena.entity.projectile.Projectile;
+import game.tile.arena.util.MathHelper;
 import game.tile.arena.util.Position;
 
 public class TileArena extends ApplicationAdapter {
@@ -27,7 +28,7 @@ public class TileArena extends ApplicationAdapter {
 
 		batch = new SpriteBatch();
 
-        Game.objects.add(new Player(new Position(400, 400)));
+        Game.objects.add(Game.player);
 	}
 
 	@Override
@@ -40,16 +41,21 @@ public class TileArena extends ApplicationAdapter {
         for (Iterator<Projectile> it = Game.projectiles.listIterator(); it.hasNext();) {
             Projectile p = it.next();
             boolean inScreen = p.update(delta);
-            if (!inScreen)
+            if (!inScreen) {
                 it.remove();
+            }
         }
+        updateCameraPosition();
+        Game.camera.update();
         last = temp;
 
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
 
+        batch.setProjectionMatrix(Game.camera.combined);
+        batch.begin();
         Collections.sort(Game.objects);
+        Game.world.render(batch);
         for (Entity o : Game.objects)
             o.render(batch, delta);
         for (Projectile p : Game.projectiles)
@@ -59,4 +65,15 @@ public class TileArena extends ApplicationAdapter {
 
 		batch.end();
 	}
+
+    private void updateCameraPosition() {
+        float minX = Game.SCREEN.x / 2;
+        float maxX = Game.WORLD.x - minX;
+        float minY = Game.SCREEN.y / 2;
+        float maxY = Game.WORLD.y - minY;
+        Game.camera.position.set(
+                MathHelper.median(minX, Game.player.pos.x, maxX),
+                MathHelper.median(minY, Game.player.pos.y, maxY),
+                0);
+    }
 }

@@ -1,9 +1,15 @@
 package game.tile.arena.util;
 
+import com.badlogic.gdx.Gdx;
+
 public class Position {
 
     public final float x;
     public final float y;
+
+    public Position(double x, double y) {
+        this((float)x, (float)y);
+    }
 
     public Position(float x, float y) {
         this.x = x;
@@ -29,5 +35,25 @@ public class Position {
         Position offset = new Position(x-pos.x, y-pos.y);
         float distance = (float)Math.sqrt(offset.x*offset.x + offset.y*offset.y);
         return this.subtract(offset.scale(dist / distance));
+    }
+
+    public Position addPolar(Position pos) {
+        return new Position(x+pos.y*Math.cos(pos.x), y+pos.y*Math.sin(pos.x));
+    }
+
+    public boolean isZero() {
+        return x==0 && y==0;
+    }
+
+    public double getDir() {
+        return Math.atan2(y, x);
+    }
+
+    public boolean inScreen() {
+        return x>0 && y>0 && x<Gdx.graphics.getWidth() && y<Gdx.graphics.getHeight();
+    }
+
+    public Position scaleY(double sy) {
+        return new Position(x, y*sy);
     }
 }

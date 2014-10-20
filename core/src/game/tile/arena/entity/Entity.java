@@ -12,15 +12,17 @@ public abstract class Entity implements Comparable<Entity> {
     protected boolean moving;
     protected int dir;
     protected int lastDir;
+    protected float speed;
 
-    public Entity(String filePrefix) {
-        this(filePrefix, 166);
+    public Entity(String filePrefix, Position p) {
+        this(filePrefix, p, 166);
     }
 
-    public Entity(String filePrefix, int animSpeed) {
+    public Entity(String filePrefix, Position p, int animSpeed) {
         sprite = new EntitySprite(filePrefix, animSpeed);
-        pos = new Position(400, 400);
+        pos = p;
         dir = 1;
+        speed = 1f/256f;
     }
 
     public abstract void update(int delta);

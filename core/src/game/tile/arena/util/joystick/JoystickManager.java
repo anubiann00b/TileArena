@@ -1,7 +1,9 @@
-package game.tile.arena.util;
+package game.tile.arena.util.joystick;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+import game.tile.arena.util.Position;
 
 public class JoystickManager {
 
@@ -28,12 +30,8 @@ public class JoystickManager {
 
     public void init() {
         sticks = new Joystick[NUM_STICKS];
-        sticks[MOVEMENT] = new Joystick(new Position(250, 250), 100, "circle.png", "joystick_bg.png");
-        sticks[ATTACK] = new Joystick(new Position(Gdx.graphics.getWidth()-250, 250), 100, "circle.png", "joystick_bg.png");
-    }
-
-    public void update(int delta) {
-
+        sticks[MOVEMENT] = new Joystick(new Position(250, 250), 100, "circle", "joystick_bg");
+        sticks[ATTACK] = new Joystick(new Position(Gdx.graphics.getWidth()-250, 250), 100, "circle", "joystick_bg");
     }
 
     public void render(SpriteBatch batch, int delta) {

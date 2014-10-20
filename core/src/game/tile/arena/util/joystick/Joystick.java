@@ -1,9 +1,10 @@
-package game.tile.arena.util;
+package game.tile.arena.util.joystick;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import game.tile.arena.Game;
 import game.tile.arena.sprite.Image;
+import game.tile.arena.util.Position;
 import game.tile.arena.util.input.JoystickInput;
 
 public class Joystick {

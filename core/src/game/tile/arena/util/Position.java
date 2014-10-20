@@ -49,8 +49,8 @@ public class Position {
         return Math.atan2(y, x);
     }
 
-    public boolean inScreen() {
-        return x>0 && y>0 && x<Gdx.graphics.getWidth() && y<Gdx.graphics.getHeight();
+    public boolean inScreen(int padding) {
+        return x>-padding && y>-padding && x<Gdx.graphics.getWidth()+padding && y<Gdx.graphics.getHeight()+padding;
     }
 
     public Position scaleY(double sy) {

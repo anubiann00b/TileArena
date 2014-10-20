@@ -17,7 +17,7 @@ public class LinearProjectile extends Projectile {
     @Override
     public boolean update(int delta) {
         pos = pos.addPolar(movement.scaleY(delta));
-        return pos.inScreen();
+        return pos.inScreen(64);
     }
 
     @Override

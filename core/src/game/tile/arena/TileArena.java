@@ -35,18 +35,7 @@ public class TileArena extends ApplicationAdapter {
 	public void render() {
         long temp = System.currentTimeMillis();
         int delta = (int)(temp-last);
-
-        for (Entity o : Game.objects)
-            o.update(delta);
-        for (Iterator<Projectile> it = Game.projectiles.listIterator(); it.hasNext();) {
-            Projectile p = it.next();
-            boolean inScreen = p.update(delta);
-            if (!inScreen) {
-                it.remove();
-            }
-        }
-        updateCameraPosition();
-        Game.camera.update();
+        update(delta);
         last = temp;
 
 		Gdx.gl.glClearColor(1, 1, 1, 1);
@@ -65,6 +54,20 @@ public class TileArena extends ApplicationAdapter {
 
 		batch.end();
 	}
+
+    private void update(int delta) {
+        for (Entity o : Game.objects)
+            o.update(delta);
+        for (Iterator<Projectile> it = Game.projectiles.listIterator(); it.hasNext();) {
+            Projectile p = it.next();
+            boolean inScreen = p.update(delta);
+            if (!inScreen) {
+                it.remove();
+            }
+        }
+        updateCameraPosition();
+        Game.camera.update();
+    }
 
     private void updateCameraPosition() {
         float minX = Game.SCREEN.x / 2;

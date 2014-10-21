@@ -17,6 +17,7 @@ public class Player extends Entity {
 
     public Player(Position p) {
         super("player", p);
+        addAttack(new AttackBow(20, 400, 5));
         addAttack(new AttackBow(400));
     }
 

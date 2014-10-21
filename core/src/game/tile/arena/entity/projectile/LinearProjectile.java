@@ -9,8 +9,8 @@ public class LinearProjectile extends Projectile {
     // Direction and speed.
     private Position movement;
 
-    public LinearProjectile(String filePrefix, Position p, Position m) {
-        super(filePrefix, p);
+    public LinearProjectile(String filePrefix, Position p, Position m, boolean o) {
+        super(filePrefix, p, o);
         movement = m.scaleY(1.0/16.0);
     }
 

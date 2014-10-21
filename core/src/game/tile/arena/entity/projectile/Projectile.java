@@ -9,9 +9,11 @@ public abstract class Projectile {
 
     public Image sprite;
     public Position pos;
+    public final boolean orientation;
 
-    public Projectile(String filePrefix, Position p) {
+    public Projectile(String filePrefix, Position p, boolean o) {
         sprite = new Image(filePrefix);
+        orientation = o;
         pos = p;
     }
 

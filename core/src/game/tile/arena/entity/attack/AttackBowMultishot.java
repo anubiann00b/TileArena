@@ -19,13 +19,13 @@ public class AttackBowMultishot implements Attack {
     }
 
     @Override
-    public void update(int delta, Position target) {
+    public void update(int delta, Position target, boolean orientation) {
         double direction = target.getDir();
         double startDir = direction - SPREAD*SHOTS/2;
 
         if (timer<0 && !target.isZero()) {
             for(int i=0;i<SHOTS;i++) {
-                Game.projectiles.add(new LinearProjectile("arrow", Game.player.pos, new Position(startDir + i*SPREAD, 8)));
+                Game.projectiles.add(new LinearProjectile("arrow", Game.player.pos, new Position(startDir + i*SPREAD, 8), orientation));
             }
             timer = RELOAD_TIME;
         }

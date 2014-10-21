@@ -32,7 +32,7 @@ public class Player extends Entity {
     @Override
     public void update(int delta) {
         updatePosition(Game.joysticks.getPosition(Game.joysticks.MOVEMENT).scale(delta*speed));
-        currentAttack.update(delta, Game.joysticks.getPosition(Game.joysticks.ATTACK));
+        currentAttack.update(delta, Game.joysticks.getPosition(Game.joysticks.ATTACK), Game.ALLY);
     }
 
     @Override

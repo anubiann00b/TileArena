@@ -16,9 +16,6 @@ public class EntitySprite {
     private int directionFacing;
     private int count;
 
-    private int width;
-    private int height;
-
     public EntitySprite(String filePrefix, int fps) {
         animations = new Animation[4];
         animSpeed = fps;
@@ -46,9 +43,10 @@ public class EntitySprite {
         Texture texture = new Texture(file);
         TextureRegion[] regions = TextureRegion.split(texture, texture.getWidth()/4, texture.getHeight())[0];
 
-        width = regions[0].getRegionWidth();
-        height = regions[0].getRegionHeight();
-
         animations[dir] = new Animation(animSpeed, regions);
+    }
+
+    public void notMoving() {
+        count = animSpeed;
     }
 }

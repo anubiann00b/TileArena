@@ -44,6 +44,7 @@ public abstract class Entity implements Comparable<Entity> {
         if (dpos.x == 0 && dpos.y == 0) {
             moving = false;
             dir = lastDir;
+            sprite.notMoving();
         } else if (Math.abs(dpos.x) > Math.abs(dpos.y)) {
             if (dpos.x > 0)
                 dir = 0;

@@ -7,8 +7,11 @@ import game.tile.arena.util.Position;
 
 public abstract class Entity implements Comparable<Entity> {
 
-    protected EntitySprite sprite;
     public Position pos;
+
+    private Position dpos;
+
+    protected EntitySprite sprite;
     protected boolean moving;
     protected int dir;
     protected int lastDir;
@@ -29,7 +32,7 @@ public abstract class Entity implements Comparable<Entity> {
 
     public void render(SpriteBatch batch, int delta) {
         sprite.setDirection(dir);
-        sprite.render(batch, delta, pos);
+        sprite.render(batch, (int)(delta/2d + dpos.magnitude()/100d*16d), pos);
     }
 
     @Override
@@ -37,7 +40,8 @@ public abstract class Entity implements Comparable<Entity> {
         return new Float(pos.y).compareTo(other.pos.y);
     }
 
-    public void updatePosition(Position dpos) {
+    public void updatePosition(Position dp) {
+        dpos = dp;
         pos = pos.add(dpos);
         moving = true;
 

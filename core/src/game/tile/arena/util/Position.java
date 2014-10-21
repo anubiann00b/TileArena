@@ -66,4 +66,8 @@ public class Position {
     public Position scaleY(double sy) {
         return new Position(x, y*sy);
     }
+
+    public double magnitude() {
+        return Math.sqrt(x*x + y*y);
+    }
 }

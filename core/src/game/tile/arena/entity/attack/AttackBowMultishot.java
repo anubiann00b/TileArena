@@ -15,6 +15,15 @@ public class AttackBowMultishot implements Attack {
         SHOTS = shots;
         SPREAD = spread * Math.PI / 180;
         RELOAD_TIME = fire;
+    }
+
+    @Override
+    public void equip() {
+        timer = RELOAD_TIME;
+    }
+
+    @Override
+    public void dequip() {
         timer = RELOAD_TIME;
     }
 

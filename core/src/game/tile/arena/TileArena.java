@@ -21,8 +21,6 @@ public class TileArena extends ApplicationAdapter {
 	public void create() {
         last = System.currentTimeMillis();
 
-        Game.input.init();
-        Game.joysticks.init();
         Game.hudCam.position.set(Game.SCREEN.x/2, Game.SCREEN.y/2, 0);
         Game.hudCam.update();
 

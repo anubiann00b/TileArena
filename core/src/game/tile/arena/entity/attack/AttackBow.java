@@ -20,6 +20,16 @@ public class AttackBow implements Attack {
         FIRE_TIME = fire;
         RELOAD_TIME = reload;
         SHOTS = shots;
+    }
+
+    @Override
+    public void equip() {
+        shotCounter = 0;
+        timer = FIRE_TIME;
+    }
+
+    @Override
+    public void dequip() {
         shotCounter = 0;
         timer = FIRE_TIME;
     }

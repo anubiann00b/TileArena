@@ -17,7 +17,11 @@ public class JoystickManager {
         return null;
     }
 
-    private JoystickManager() { }
+    private JoystickManager() {
+        sticks = new Joystick[NUM_STICKS];
+        sticks[MOVEMENT] = new Joystick(new Position(250, 250), 100, "circle", "joystick_bg");
+        sticks[ATTACK] = new Joystick(new Position(Gdx.graphics.getWidth()-250, 250), 100, "circle", "joystick_bg");
+    }
 
     public Joystick[] sticks;
     public final int NUM_STICKS = 2;
@@ -26,12 +30,6 @@ public class JoystickManager {
 
     public Position getPosition(int stick) {
         return sticks[stick].position.subtract(sticks[stick].center);
-    }
-
-    public void init() {
-        sticks = new Joystick[NUM_STICKS];
-        sticks[MOVEMENT] = new Joystick(new Position(250, 250), 100, "circle", "joystick_bg");
-        sticks[ATTACK] = new Joystick(new Position(Gdx.graphics.getWidth()-250, 250), 100, "circle", "joystick_bg");
     }
 
     public void render(SpriteBatch batch, int delta) {

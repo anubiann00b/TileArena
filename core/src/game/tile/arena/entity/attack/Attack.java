@@ -4,5 +4,7 @@ import game.tile.arena.util.Position;
 
 public interface Attack {
 
-    public abstract void update(int delta, Position target, boolean orientation);
+    public void equip();
+    public void dequip();
+    public void update(int delta, Position target, boolean orientation);
 }

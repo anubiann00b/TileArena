@@ -16,16 +16,14 @@ public class InputManager {
         return null;
     }
 
-    private InputManager() { }
+    private InputManager() {
+        inputs = new InputMultiplexer();
+        Gdx.input.setInputProcessor(inputs);
+    }
 
     private InputMultiplexer inputs;
 
     public void addInputProcessor(InputProcessor in) {
         inputs.addProcessor(in);
-    }
-
-    public void init() {
-        inputs = new InputMultiplexer();
-        Gdx.input.setInputProcessor(inputs);
     }
 }

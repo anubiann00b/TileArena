@@ -20,18 +20,20 @@ public class Player extends Entity {
 
     public Player(Position p) {
         super("player", p);
-        addAttack(new AttackBowMultishot(50, 4, 25));
-        addAttack(new AttackBow(20, 400, 5));
-        addAttack(new AttackBow(400));
+        addAttack(new AttackBowMultishot(400, 3, 25));
+        addAttack(new AttackBowMultishot(300, 5, 3));
+        addAttack(new AttackBow(20, 400, 3));
+        addAttack(new AttackBow(150));
         Game.input.addInputProcessor(new WeaponSwitchInput());
     }
 
     public void switchWeapon() {
-        if (currentAttackIndex == attackList.size()) {
+        if (currentAttackIndex >= attackList.size()) {
             switchWeapon(0);
-            currentAttackIndex = 0;
+            currentAttackIndex = 1;
         } else {
-            switchWeapon(currentAttackIndex++);
+            switchWeapon(currentAttackIndex);
+            currentAttackIndex++;
         }
     }
 

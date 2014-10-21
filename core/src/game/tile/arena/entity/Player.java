@@ -8,6 +8,7 @@ import java.util.List;
 import game.tile.arena.Game;
 import game.tile.arena.entity.attack.Attack;
 import game.tile.arena.entity.attack.AttackBow;
+import game.tile.arena.entity.attack.AttackBowMultishot;
 import game.tile.arena.util.Position;
 
 public class Player extends Entity {
@@ -17,6 +18,7 @@ public class Player extends Entity {
 
     public Player(Position p) {
         super("player", p);
+        addAttack(new AttackBowMultishot(50, 4, 25));
         addAttack(new AttackBow(20, 400, 5));
         addAttack(new AttackBow(400));
     }

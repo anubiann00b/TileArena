@@ -20,8 +20,8 @@ public class Player extends Entity {
 
     public Player(Position p) {
         super("player", p);
-        addAttack(new AttackBowMultishot(400, 3, 25));
-        addAttack(new AttackBowMultishot(300, 5, 3));
+        addAttack(new AttackBowMultishot(400, 5, 15));
+        addAttack(new AttackBowMultishot(300, 3, 5));
         addAttack(new AttackBow(20, 400, 3));
         addAttack(new AttackBow(150));
         Game.input.addInputProcessor(new WeaponSwitchInput());
@@ -56,10 +56,5 @@ public class Player extends Entity {
     public void update(int delta) {
         updatePosition(Game.joysticks.getPosition(Game.joysticks.MOVEMENT).scale(delta*speed));
         currentAttack.update(delta, Game.joysticks.getPosition(Game.joysticks.ATTACK), Game.ALLY);
-    }
-
-    @Override
-    public void render(SpriteBatch batch, int delta) {
-        super.render(batch, delta);
     }
 }

@@ -9,8 +9,11 @@ import java.util.Collections;
 import java.util.Iterator;
 
 import game.tile.arena.entity.Entity;
+import game.tile.arena.entity.enemy.Enemy;
+import game.tile.arena.entity.enemy.ai.EnemyPlayerAI;
 import game.tile.arena.entity.projectile.Projectile;
 import game.tile.arena.util.MathHelper;
+import game.tile.arena.util.Position;
 
 public class TileArena extends ApplicationAdapter {
 
@@ -27,6 +30,11 @@ public class TileArena extends ApplicationAdapter {
 		batch = new SpriteBatch();
 
         Game.objects.add(Game.player);
+
+        for (int i=0;i<100;i++)
+            Game.objects.add(new Enemy("player",
+                    new Position(Math.random()*(Game.WORLD.x-256)+128, Math.random()*(Game.WORLD.y-256)+128),
+                    new EnemyPlayerAI()));
 	}
 
 	@Override

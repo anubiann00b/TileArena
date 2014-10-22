@@ -9,7 +9,7 @@ public abstract class Entity implements Comparable<Entity> {
 
     public Position pos;
 
-    private Position dpos;
+    private Position dpos = new Position(0, 0);
 
     protected EntitySprite sprite;
     protected boolean moving;
@@ -25,14 +25,16 @@ public abstract class Entity implements Comparable<Entity> {
         sprite = new EntitySprite(filePrefix, animSpeed);
         pos = p;
         dir = 1;
-        speed = 1f/256f;
+        speed = 1f/2f;
     }
 
     public abstract void update(int delta);
 
+
     public void render(SpriteBatch batch, int delta) {
         sprite.setDirection(dir);
-        sprite.render(batch, (int)(delta/2d + dpos.magnitude()/100d*16d), pos);
+        if (pos.inView(16))
+            sprite.render(batch, (int)(delta/2d + dpos.magnitude()/100d*16d), pos);
     }
 
     @Override

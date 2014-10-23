@@ -19,7 +19,7 @@ public class Player extends Entity {
     private List<Attack> attackList = new LinkedList<Attack>();
 
     public Player(Position p) {
-        super("player", p);
+        super("player", p, Game.ALLY);
         addAttack(new AttackBowMultishot(400, 5, 15));
         addAttack(new AttackBowMultishot(300, 3, 5));
         addAttack(new AttackBow(20, 400, 3));

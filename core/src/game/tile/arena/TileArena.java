@@ -44,8 +44,8 @@ public class TileArena extends ApplicationAdapter {
         update(delta);
         last = temp;
 
-		Gdx.gl.glClearColor(1, 1, 1, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glClearColor(1, 1, 1, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         batch.setProjectionMatrix(Game.camera.combined);
         batch.begin();
@@ -53,6 +53,7 @@ public class TileArena extends ApplicationAdapter {
         Game.world.render(batch);
         for (Entity o : Game.objects)
             o.render(batch, delta);
+        batch.setColor(1f, 1f, 1f, 1f);
         for (Projectile p : Game.projectiles)
             p.render(batch);
 
@@ -60,6 +61,7 @@ public class TileArena extends ApplicationAdapter {
         Game.joysticks.render(batch, delta);
 
 		batch.end();
+        batch.setColor(1f, 1f, 1f, 1f);
 	}
 
     private void update(int delta) {

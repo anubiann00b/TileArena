@@ -1,22 +1,25 @@
 package game.tile.arena.sprite;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+import game.tile.arena.entity.projectile.Projectile;
 import game.tile.arena.util.Position;
 
 public class EntitySprite {
 
-    private static Position defaultScale = new Position(64, 64);
+    private Position scale;
 
     private Animation[] animations;
     private int animSpeed;
     private int directionFacing;
     private int count;
 
-    public EntitySprite(String filePrefix, int fps) {
+    public EntitySprite(String filePrefix, int fps, int size) {
+        scale = new Position(size);
         animations = new Animation[4];
         animSpeed = fps;
         directionFacing = 0;
@@ -27,12 +30,8 @@ public class EntitySprite {
     }
 
     public void render(SpriteBatch batch, int delta, Position p) {
-        render(batch, delta, p, defaultScale);
-    }
-
-    public void render(SpriteBatch batch, int delta, Position p, Position s) {
         count += delta;
-        batch.draw(animations[directionFacing].getKeyFrame(count, true), p.x-s.x/2, p.y-s.y/2, s.x, s.y);
+        batch.draw(animations[directionFacing].getKeyFrame(count, true), p.x-scale.x/2, p.y-scale.y/2, scale.x, scale.y);
     }
 
     public void setDirection(int dir) {
@@ -48,5 +47,9 @@ public class EntitySprite {
 
     public void notMoving() {
         count = animSpeed;
+    }
+
+    public boolean isCollision(Projectile p, Position pos) {
+        return p.pos.x>pos.x && p.pos.y>pos.y && p.pos.x<pos.x+scale.x && p.pos.y<pos.y+scale.y;
     }
 }

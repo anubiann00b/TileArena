@@ -1,6 +1,7 @@
 package game.tile.arena.entity;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import game.tile.arena.Game;
@@ -23,6 +24,9 @@ public abstract class Entity implements Comparable<Entity> {
     protected float speed;
 
     protected boolean hit = false;
+    protected int colorCounter = 0;
+    private final int COLOR_INCREMENTS = 500;
+    private final int COLOR_MAX = COLOR_INCREMENTS*5-1;
 
     public final boolean orientation;
 
@@ -44,10 +48,12 @@ public abstract class Entity implements Comparable<Entity> {
     public void render(SpriteBatch batch, double delta) {
         sprite.setDirection(dir);
         if (pos.inView(16)) {
-            if (hit)
-                batch.setColor(0.5f, 0f, 0f, 1f);
-            else
-                batch.setColor(1f, 1f, 1f, 1f);
+            batch.setColor(1f, 1f, 1f, 1f);
+            if (colorCounter >= 0) {
+                if ((colorCounter / COLOR_INCREMENTS) % 2 == 0)
+                    batch.setColor(0.5f, 0f, 0f, 1f);
+                colorCounter -= delta*Game.FPS;
+            }
             sprite.render(batch, 1, pos);
         }
         hit = false;
@@ -59,6 +65,7 @@ public abstract class Entity implements Comparable<Entity> {
 
     public void hit() {
         hit = true;
+        colorCounter = COLOR_MAX;
     }
 
     @Override

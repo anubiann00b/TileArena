@@ -1,5 +1,6 @@
 package game.tile.arena.entity;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.LinkedList;
@@ -20,15 +21,15 @@ public class Player extends Entity {
 
     public Player(Position p) {
         super("player", p, Game.ALLY);
-        addAttack(new AttackBowMultishot(400, 5, 15));
-        addAttack(new AttackBowMultishot(300, 3, 5));
-        addAttack(new AttackBow(20, 400, 3));
-        addAttack(new AttackBow(150));
+        addAttack(new AttackBowMultishot(1200, 5, 15));
+        addAttack(new AttackBowMultishot(900, 3, 5));
+        addAttack(new AttackBow(60, 1200, 3));
+        addAttack(new AttackBow(600));
         Game.input.addInputProcessor(new WeaponSwitchInput());
     }
 
     public void switchWeapon() {
-        if (currentAttackIndex >= attackList.size()) {
+        if (currentAttackIndex < 0 || currentAttackIndex >= attackList.size()) {
             switchWeapon(0);
             currentAttackIndex = 1;
         } else {
@@ -38,23 +39,21 @@ public class Player extends Entity {
     }
 
     public void switchWeapon(int index) {
-        currentAttack.dequip();
+        if (currentAttack != null)
+            currentAttack.dequip();
         currentAttack = attackList.get(index);
         currentAttack.equip();
     }
 
     public void addAttack(Attack a) {
-        if (currentAttack == null) {
-            currentAttack = a;
-            currentAttack.equip();
-            currentAttackIndex = 0;
-        }
         attackList.add(a);
+        if (currentAttack == null)
+            switchWeapon();
     }
 
     @Override
-    public void update(int delta) {
-        updatePosition(Game.joysticks.getPosition(Game.joysticks.MOVEMENT).scale(delta*speed));
+    public void update(double delta) {
+        updatePosition(Game.joysticks.getPosition(Game.joysticks.MOVEMENT), delta);
         currentAttack.update(delta, Game.joysticks.getPosition(Game.joysticks.ATTACK), Game.ALLY);
     }
 }

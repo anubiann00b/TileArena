@@ -6,5 +6,5 @@ public interface Attack {
 
     public void equip();
     public void dequip();
-    public void update(int delta, Position target, boolean orientation);
+    public void update(double delta, Position target, boolean orientation);
 }

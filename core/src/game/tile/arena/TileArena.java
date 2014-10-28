@@ -2,7 +2,9 @@ package game.tile.arena;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.Collections;
@@ -17,12 +19,12 @@ import game.tile.arena.util.Position;
 
 public class TileArena extends ApplicationAdapter {
 
-    long last;
     SpriteBatch batch;
+    BitmapFont font;
 
 	@Override
 	public void create() {
-        last = System.currentTimeMillis();
+        font = new BitmapFont();
 
         Game.hudCam.position.set(Game.SCREEN.x/2, Game.SCREEN.y/2, 0);
         Game.hudCam.update();
@@ -31,18 +33,24 @@ public class TileArena extends ApplicationAdapter {
 
         Game.objects.add(Game.player);
 
-        for (int i=0;i<100;i++)
+        for (int i=0;i<50;i++)
             Game.objects.add(new Enemy("player",
                     new Position(Math.random()*(Game.WORLD.x-256)+128, Math.random()*(Game.WORLD.y-256)+128),
                     new EnemyPlayerAI()));
 	}
 
+    int cnt = 0;
+
 	@Override
 	public void render() {
-        long temp = System.currentTimeMillis();
-        int delta = (int)(temp-last);
+        if (cnt++ < 500)
+            return;
+
+        double delta = 1;
+        if (Gdx.graphics.getFramesPerSecond() != 0)
+            delta = (double) Game.FPS/Gdx.graphics.getFramesPerSecond();
+
         update(delta);
-        last = temp;
 
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -60,19 +68,20 @@ public class TileArena extends ApplicationAdapter {
         batch.setProjectionMatrix(Game.hudCam.combined);
         Game.joysticks.render(batch, delta);
 
-		batch.end();
+        font.draw(batch, "fps: " + Gdx.graphics.getFramesPerSecond(), 20, 30);
+
+        batch.end();
         batch.setColor(1f, 1f, 1f, 1f);
 	}
 
-    private void update(int delta) {
+    private void update(double delta) {
         for (Entity o : Game.objects)
             o.update(delta);
         for (Iterator<Projectile> it = Game.projectiles.listIterator(); it.hasNext();) {
             Projectile p = it.next();
             boolean inScreen = p.update(delta);
-            if (!inScreen) {
+            if (!inScreen)
                 it.remove();
-            }
         }
         updateCameraPosition();
         Game.camera.update();

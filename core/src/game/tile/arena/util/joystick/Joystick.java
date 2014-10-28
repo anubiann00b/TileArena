@@ -59,7 +59,7 @@ public class Joystick {
         return false;
     }
 
-    void renderStick(SpriteBatch batch, int delta) {
+    void renderStick(SpriteBatch batch, double delta) {
         bg.renderNoCamera(batch, center, radius / bg.getWidth());
         stick.renderNoCamera(batch, position, 4);
     }

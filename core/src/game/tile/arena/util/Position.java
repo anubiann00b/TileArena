@@ -21,6 +21,7 @@ public class Position {
     }
 
     public Position scale(float scale) { return new Position(x*scale, y*scale); }
+    public Position scale(double scale) { return scale((float)scale); }
     public Position subtract(Position pos) { return new Position(x-pos.x, y-pos.y); }
     public Position add(Position pos) { return new Position(x+pos.x, y+pos.y); }
 

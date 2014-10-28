@@ -27,11 +27,7 @@ public class Enemy extends Entity {
     }
 
     @Override
-    public void update(int delta) {
-        updatePosition(ai.getRelativePosition().scale(delta*speed));
-        for (Projectile p : Game.projectiles)
-            if (p.orientation != orientation)
-                if (isCollision(p))
-                    hit = true;
+    public void update(double delta) {
+        updatePosition(ai.getRelativePosition(), delta);
     }
 }

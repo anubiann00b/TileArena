@@ -32,7 +32,7 @@ public class JoystickManager {
         return sticks[stick].position.subtract(sticks[stick].center).scale(1f/sticks[stick].radius);
     }
 
-    public void render(SpriteBatch batch, int delta) {
+    public void render(SpriteBatch batch, double delta) {
         sticks[MOVEMENT].renderStick(batch, delta);
         sticks[ATTACK].renderStick(batch, delta);
     }

@@ -17,7 +17,7 @@ public abstract class Projectile {
         pos = p;
     }
 
-    public abstract boolean update(int delta);
+    public abstract boolean update(double delta);
 
     public abstract void render(SpriteBatch batch);
 

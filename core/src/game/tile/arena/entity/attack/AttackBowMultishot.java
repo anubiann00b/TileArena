@@ -28,7 +28,7 @@ public class AttackBowMultishot implements Attack {
     }
 
     @Override
-    public void update(int delta, Position target, boolean orientation) {
+    public void update(double delta, Position target, boolean orientation) {
         double direction = target.getDir();
         double startDir = direction - SPREAD*SHOTS/2;
 
@@ -38,6 +38,6 @@ public class AttackBowMultishot implements Attack {
             }
             timer = RELOAD_TIME;
         }
-        timer -= delta;
+        timer -= delta * Game.FPS;
     }
 }

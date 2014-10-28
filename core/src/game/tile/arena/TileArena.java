@@ -43,7 +43,7 @@ public class TileArena extends ApplicationAdapter {
 
 	@Override
 	public void render() {
-        if (cnt++ < 500)
+        if (cnt++ < 120)
             return;
 
         double delta = 1;

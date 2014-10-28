@@ -34,7 +34,8 @@ public class AttackBowMultishot implements Attack {
 
         if (timer<0 && !target.isZero()) {
             for(int i=0;i<SHOTS;i++) {
-                Game.projectiles.add(new LinearProjectile("arrow", Game.player.pos, new Position(startDir + i*SPREAD, 8), orientation));
+                Game.projectiles.add(new LinearProjectile("arrow", Game.player.pos,
+                        new Position(startDir + i*SPREAD, 8), orientation, 1));
             }
             timer = RELOAD_TIME;
         }

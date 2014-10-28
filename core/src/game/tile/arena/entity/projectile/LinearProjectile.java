@@ -11,25 +11,15 @@ public class LinearProjectile extends Projectile {
     // Direction and speed.
     private Position movement;
 
-    public LinearProjectile(String filePrefix, Position p, Position m, boolean o) {
-        super(filePrefix, p, o);
-        movement = m;
+    public LinearProjectile(String filePrefix, Position pos, Position dPos, boolean o, int hits) {
+        super(filePrefix, pos, o, hits);
+        movement = dPos;
     }
 
     @Override
     public boolean update(double delta) {
         pos = pos.addPolar(movement.scaleY(delta));
-
-        for (Entity e : Game.objects) {
-            if (e.orientation != orientation) {
-                if (e.isCollision(this)) {
-                    e.hit();
-                    break;
-                }
-            }
-        }
-
-        return pos.inWorld(64);
+        return valid() && !checkCollision();
     }
 
     @Override

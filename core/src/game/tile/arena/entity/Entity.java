@@ -10,8 +10,10 @@ import game.tile.arena.util.Position;
 
 public abstract class Entity implements Comparable<Entity> {
 
-    public Position pos;
+    private static int idCounter;
+    public final int id;
 
+    public Position pos;
     private Position dpos = new Position(0, 0);
 
     protected EntitySprite sprite;
@@ -29,6 +31,7 @@ public abstract class Entity implements Comparable<Entity> {
     }
 
     public Entity(String filePrefix, Position p, int animSpeed, boolean o) {
+        id = idCounter++;
         sprite = new EntitySprite(filePrefix, animSpeed, 64);
         pos = p;
         dir = 1;
@@ -37,7 +40,6 @@ public abstract class Entity implements Comparable<Entity> {
     }
 
     public abstract void update(double delta);
-
 
     public void render(SpriteBatch batch, double delta) {
         sprite.setDirection(dir);
@@ -87,5 +89,12 @@ public abstract class Entity implements Comparable<Entity> {
         }
 
         lastDir = dir;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || !(o instanceof Entity))
+            return false;
+        return ((Entity)o).id == id;
     }
 }

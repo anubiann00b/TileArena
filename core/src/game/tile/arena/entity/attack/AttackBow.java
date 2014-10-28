@@ -37,7 +37,7 @@ public class AttackBow implements Attack {
     @Override
     public void update(double delta, Position target, boolean orientation) {
         if (timer<0 && !target.isZero()) {
-            Game.projectiles.add(new LinearProjectile("arrow", Game.player.pos, new Position(target.getDir(), 8), orientation));
+            Game.projectiles.add(new LinearProjectile("arrow", Game.player.pos, new Position(target.getDir(), 8), orientation, 2));
             if (shotCounter <= 0) {
                 timer = RELOAD_TIME;
                 shotCounter = SHOTS;

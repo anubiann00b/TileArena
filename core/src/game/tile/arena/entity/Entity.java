@@ -31,7 +31,7 @@ public abstract class Entity implements Comparable<Entity> {
     public final boolean orientation;
 
     public Entity(String filePrefix, Position p, boolean o) {
-        this(filePrefix, p, 664, o);
+        this(filePrefix, p, 80, o);
     }
 
     public Entity(String filePrefix, Position p, int animSpeed, boolean o) {
@@ -54,7 +54,7 @@ public abstract class Entity implements Comparable<Entity> {
                     batch.setColor(0.5f, 0f, 0f, 1f);
                 colorCounter -= delta*Game.FPS;
             }
-            sprite.render(batch, 1, pos);
+            sprite.render(batch, (int)dpos.magnitude(), pos);
         }
         hit = false;
     }

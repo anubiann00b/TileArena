@@ -33,7 +33,7 @@ public class TileArena extends ApplicationAdapter {
         Game.objects.add(Game.player);
 
         for (int i=0;i<50;i++)
-            Game.objects.add(new Enemy("player",
+            Game.objects.add(new Enemy("blob_green",
                     new Position(Math.random()*(Game.WORLD.x-256)+128, Math.random()*(Game.WORLD.y-256)+128),
                     new EnemyPlayerAI()));
 	}

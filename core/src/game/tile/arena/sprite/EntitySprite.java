@@ -39,8 +39,9 @@ public class EntitySprite {
 
     private void loadAnim(String file, int dir) {
         Texture texture = new Texture(file);
-        TextureRegion[] regions = TextureRegion.split(texture, texture.getWidth()/4, texture.getHeight())[0];
-
+        int width = texture.getWidth();
+        int height = texture.getHeight();
+        TextureRegion[] regions = TextureRegion.split(texture, width/(width/height), height)[0];
         animations[dir] = new Animation(animSpeed, regions);
     }
 

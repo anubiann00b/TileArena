@@ -1,7 +1,5 @@
 package game.tile.arena.entity;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import game.tile.arena.Game;

@@ -2,8 +2,6 @@ package game.tile.arena.entity.projectile;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import game.tile.arena.Game;
-import game.tile.arena.entity.Entity;
 import game.tile.arena.util.Position;
 
 public class LinearProjectile extends Projectile {

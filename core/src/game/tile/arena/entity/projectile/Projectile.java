@@ -4,11 +4,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import game.tile.arena.Game;
 import game.tile.arena.entity.Entity;
-import game.tile.arena.entity.enemy.Enemy;
 import game.tile.arena.sprite.Image;
 import game.tile.arena.util.Position;
 

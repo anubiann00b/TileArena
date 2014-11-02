@@ -1,15 +1,11 @@
 package game.tile.arena.entity;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
 import java.util.LinkedList;
 import java.util.List;
 
 import game.tile.arena.Game;
 import game.tile.arena.entity.attack.Attack;
 import game.tile.arena.entity.attack.AttackBow;
-import game.tile.arena.entity.attack.AttackBowMultishot;
 import game.tile.arena.util.Position;
 import game.tile.arena.util.input.WeaponSwitchInput;
 
@@ -21,10 +17,10 @@ public class Player extends Entity {
 
     public Player(Position p) {
         super("player", p, Game.ALLY);
-        addAttack(new AttackBowMultishot(1200, 5, 15));
-        addAttack(new AttackBowMultishot(900, 3, 5));
-        addAttack(new AttackBow(60, 1200, 3));
-        addAttack(new AttackBow(600));
+        addAttack(new AttackBow.Builder().setFireTime(1200).setSpreadShots(5).setSpreadAngle(15).create());
+        addAttack(new AttackBow.Builder().setFireTime(900).setSpreadShots(3).setSpreadAngle(5).create());
+        addAttack(new AttackBow.Builder().setFireTime(60).setReloadTime(1200).setBarrageShots(3).setPierce(2).create());
+        addAttack(new AttackBow.Builder().setFireTime(600).setPierce(2).create());
         Game.input.addInputProcessor(new WeaponSwitchInput());
     }
 

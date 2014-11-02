@@ -1,6 +1,5 @@
 package game.tile.arena.entity.enemy.ai;
 
-import game.tile.arena.entity.enemy.Enemy;
 import game.tile.arena.util.Position;
 
 public class EnemyPlayerAI extends EnemyAI {

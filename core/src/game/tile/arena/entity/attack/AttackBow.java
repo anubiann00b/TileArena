@@ -90,8 +90,11 @@ public class AttackBow implements Attack {
         if (timer<0 && !target.isZero()) {
             double startDir = target.getDir() - spread * spreadShots /2;
             for(int i=0;i< spreadShots;i++) {
-                Game.projectiles.add(new LinearProjectile("arrow", Game.player.pos,
-                        new Position(startDir + i* spread, 24), orientation, pierce, damage));
+                Game.projectiles.add(new LinearProjectile.Builder("arrow", Game.player.pos,
+                        new Position(startDir + i * spread, 24), orientation)
+                        .setHits(pierce)
+                        .setDamage(damage)
+                        .create());
             }
             if (shotCounter <= 0) {
                 timer = reloadTime;

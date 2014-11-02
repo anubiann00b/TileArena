@@ -3,11 +3,8 @@ package game.tile.arena.util.input;
 import com.badlogic.gdx.InputProcessor;
 
 import game.tile.arena.Game;
-import game.tile.arena.util.Position;
 
 public class WeaponSwitchInput  implements InputProcessor {
-
-    Position range = new Position(Game.SCREEN.x/2, Game.SCREEN.y);
 
     @Override
     public boolean keyDown(int keycode) {

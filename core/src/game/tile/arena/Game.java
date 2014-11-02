@@ -19,8 +19,8 @@ public class Game {
     public static final int FPS = 60;
 
     public static final boolean ALLY = true;
-
     public static final boolean ENEMY = false;
+
     public static final Position WORLD = new Position(Gdx.graphics.getWidth()*3, Gdx.graphics.getHeight()*3);
 
     public static final Position SCREEN = new Position(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());

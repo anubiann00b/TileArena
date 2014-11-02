@@ -9,8 +9,8 @@ public class LinearProjectile extends Projectile {
     // Direction and speed.
     private Position movement;
 
-    public LinearProjectile(String filePrefix, Position pos, Position dPos, boolean o, int hits) {
-        super(filePrefix, pos, o, hits);
+    public LinearProjectile(String filePrefix, Position pos, Position dPos, boolean orientation, int hits, int damage) {
+        super(filePrefix, pos, orientation, hits, damage);
         movement = dPos;
     }
 

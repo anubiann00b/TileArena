@@ -6,6 +6,7 @@ import java.util.List;
 import game.tile.arena.Game;
 import game.tile.arena.entity.attack.Attack;
 import game.tile.arena.entity.attack.AttackBow;
+import game.tile.arena.entity.attack.AttackList;
 import game.tile.arena.util.Position;
 import game.tile.arena.util.input.WeaponSwitchInput;
 
@@ -13,7 +14,7 @@ public class Player extends Entity {
 
     private Attack currentAttack;
     private int currentAttackIndex = -1;
-    private List<Attack> attackList = new LinkedList<Attack>();
+    private AttackList attackList = new AttackList();
 
     public Player(Position p) {
         super("player", p, Game.ALLY);
@@ -25,13 +26,8 @@ public class Player extends Entity {
     }
 
     public void switchWeapon() {
-        if (currentAttackIndex < 0 || currentAttackIndex >= attackList.size()) {
-            switchWeapon(0);
-            currentAttackIndex = 1;
-        } else {
-            switchWeapon(currentAttackIndex);
-            currentAttackIndex++;
-        }
+        currentAttackIndex = attackList.getWrapIndex(currentAttackIndex+1);
+        switchWeapon(currentAttackIndex);
     }
 
     public void switchWeapon(int index) {

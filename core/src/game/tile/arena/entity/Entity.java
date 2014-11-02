@@ -2,6 +2,8 @@ package game.tile.arena.entity;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 import game.tile.arena.Game;
 import game.tile.arena.entity.projectile.Projectile;
 import game.tile.arena.sprite.EntitySprite;
@@ -9,7 +11,7 @@ import game.tile.arena.util.Position;
 
 public abstract class Entity implements Comparable<Entity> {
 
-    private static int idCounter;
+    private static AtomicInteger idCounter = new AtomicInteger();
     public final int id;
 
     public Position pos;
@@ -33,7 +35,7 @@ public abstract class Entity implements Comparable<Entity> {
     }
 
     public Entity(String filePrefix, Position p, int animSpeed, boolean o) {
-        id = idCounter++;
+        id = idCounter.getAndIncrement();
         sprite = new EntitySprite(filePrefix, animSpeed, 64);
         pos = p;
         dir = 1;

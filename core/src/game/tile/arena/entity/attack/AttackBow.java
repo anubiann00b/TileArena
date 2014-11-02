@@ -14,6 +14,7 @@ public class AttackBow implements Attack {
         private int spreadAngle = 0;
         private int barrageShots = 0;
         private int pierce = 1;
+        private int damage = 1;
 
         public Builder setFireTime(int fireTime) {
             this.fireTime = fireTime;
@@ -48,7 +49,7 @@ public class AttackBow implements Attack {
         public AttackBow create() {
             if (reloadTime == 0)
                 reloadTime = fireTime;
-            return new AttackBow(fireTime, reloadTime, spreadShots, barrageShots, spreadAngle, pierce);
+            return new AttackBow(fireTime, reloadTime, spreadShots, barrageShots, spreadAngle, pierce, damage);
         }
     }
 
@@ -60,14 +61,16 @@ public class AttackBow implements Attack {
     private final int spreadShots;
     private final double spread;
     private final int pierce;
+    private final int damage;
 
-    private AttackBow(int fireTime, int reloadTime, int spreadShots, int barrageShots, int spread, int pierce) {
+    private AttackBow(int fireTime, int reloadTime, int spreadShots, int barrageShots, int spread, int pierce, int damage) {
         this.fireTime = fireTime;
         this.reloadTime = reloadTime;
         this.spread = spread * Math.PI / 180;
         this.spreadShots = spreadShots;
         this.barrageShots = barrageShots;
         this.pierce = pierce;
+        this.damage = damage;
     }
 
     @Override
@@ -88,7 +91,7 @@ public class AttackBow implements Attack {
             double startDir = target.getDir() - spread * spreadShots /2;
             for(int i=0;i< spreadShots;i++) {
                 Game.projectiles.add(new LinearProjectile("arrow", Game.player.pos,
-                        new Position(startDir + i* spread, 24), orientation, pierce));
+                        new Position(startDir + i* spread, 24), orientation, pierce, damage));
             }
             if (shotCounter <= 0) {
                 timer = reloadTime;

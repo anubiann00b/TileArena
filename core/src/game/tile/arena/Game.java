@@ -34,5 +34,5 @@ public class Game {
     public static final JoystickManager joysticks = JoystickManager.getInstance();
     public static final Player player = new Player(new Position(0, 0));
     public static final List<Projectile> projectiles = new LinkedList<Projectile>();
-    public static final List<Entity> objects = new LinkedList<Entity>();
+    public static final List<Entity> entities = new LinkedList<Entity>();
 }

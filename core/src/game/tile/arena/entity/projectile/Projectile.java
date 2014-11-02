@@ -48,7 +48,7 @@ public abstract class Projectile extends Object {
     }
 
     protected boolean checkCollision() {
-        for (Entity e : Game.objects) {
+        for (Entity e : Game.entities) {
             if (e.orientation != orientation) {
                 if (e.isCollision(this)) {
                     if (alreadyHit.contains(e))

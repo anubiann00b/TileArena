@@ -30,10 +30,10 @@ public class TileArena extends ApplicationAdapter {
 
 		batch = new SpriteBatch();
 
-        Game.objects.add(Game.player);
+        Game.entities.add(Game.player);
 
         for (int i=0;i<50;i++)
-            Game.objects.add(new Enemy.Builder("blob_green",
+            Game.entities.add(new Enemy.Builder("blob_green",
                     new Position(Math.random() * (Game.WORLD.x - 256) + 128, Math.random() * (Game.WORLD.y - 256) + 128),
                     new EnemyBlobAI())
                     .createEnemy());
@@ -57,9 +57,9 @@ public class TileArena extends ApplicationAdapter {
 
         batch.setProjectionMatrix(Game.camera.combined);
         batch.begin();
-        Collections.sort(Game.objects);
+        Collections.sort(Game.entities);
         Game.world.render(batch);
-        for (Entity o : Game.objects)
+        for (Entity o : Game.entities)
             o.render(batch, delta);
         batch.setColor(1f, 1f, 1f, 1f);
         for (Projectile p : Game.projectiles)
@@ -75,7 +75,7 @@ public class TileArena extends ApplicationAdapter {
 	}
 
     private void update(double delta) {
-        for (Iterator<Entity> it = Game.objects.listIterator(); it.hasNext();) {
+        for (Iterator<Entity> it = Game.entities.listIterator(); it.hasNext();) {
             Entity e  = it.next();
             boolean alive = e.update(delta);
             if (!alive)

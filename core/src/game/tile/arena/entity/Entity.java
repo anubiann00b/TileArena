@@ -43,14 +43,14 @@ public abstract class Entity implements Comparable<Entity> {
     public abstract boolean update(double delta);
 
     public void render(SpriteBatch batch, double delta) {
+        if (colorCounter >= 0)
+            colorCounter -= delta*Game.FPS;
         sprite.setDirection(dir);
         if (pos.inView(16)) {
-            batch.setColor(1f, 1f, 1f, 1f);
-            if (colorCounter >= 0) {
-                if ((colorCounter / COLOR_INCREMENTS) % 2 == 0)
-                    batch.setColor(0.5f, 0f, 0f, 1f);
-                colorCounter -= delta*Game.FPS;
-            }
+            if ((colorCounter / COLOR_INCREMENTS) % 2 == 0)
+                batch.setColor(1f, 1f, 1f, 1f);
+            else
+                batch.setColor(0.5f, 0f, 0f, 1f);
             sprite.render(batch, (int)dpos.magnitude(), pos);
         }
         hit = false;

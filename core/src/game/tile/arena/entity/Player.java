@@ -1,8 +1,5 @@
 package game.tile.arena.entity;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import game.tile.arena.Game;
 import game.tile.arena.entity.attack.Attack;
 import game.tile.arena.entity.attack.AttackBow;
@@ -17,7 +14,7 @@ public class Player extends Entity {
     private AttackList attackList = new AttackList();
 
     public Player(Position p) {
-        super("player", p, Game.ALLY);
+        super("player", p, 166, Game.ALLY, 20, 8);
         addAttack(new AttackBow.Builder().setFireTime(1200).setSpreadShots(5).setSpreadAngle(15).create());
         addAttack(new AttackBow.Builder().setFireTime(900).setSpreadShots(3).setSpreadAngle(5).create());
         addAttack(new AttackBow.Builder().setFireTime(60).setReloadTime(1200).setBarrageShots(3).setPierce(2).create());
@@ -44,8 +41,9 @@ public class Player extends Entity {
     }
 
     @Override
-    public void update(double delta) {
+    public boolean update(double delta) {
         updatePosition(Game.joysticks.getPosition(Game.joysticks.MOVEMENT), delta);
         currentAttack.update(delta, Game.joysticks.getPosition(Game.joysticks.ATTACK), Game.ALLY);
+        return true;
     }
 }

@@ -11,7 +11,7 @@ import java.util.Iterator;
 
 import game.tile.arena.entity.Entity;
 import game.tile.arena.entity.enemy.Enemy;
-import game.tile.arena.entity.enemy.ai.EnemyPlayerAI;
+import game.tile.arena.entity.enemy.ai.EnemyBlobAI;
 import game.tile.arena.entity.projectile.Projectile;
 import game.tile.arena.util.MathHelper;
 import game.tile.arena.util.Position;
@@ -33,9 +33,10 @@ public class TileArena extends ApplicationAdapter {
         Game.objects.add(Game.player);
 
         for (int i=0;i<50;i++)
-            Game.objects.add(new Enemy("blob_green",
-                    new Position(Math.random()*(Game.WORLD.x-256)+128, Math.random()*(Game.WORLD.y-256)+128),
-                    new EnemyPlayerAI()));
+            Game.objects.add(new Enemy.Builder("blob_green",
+                    new Position(Math.random() * (Game.WORLD.x - 256) + 128, Math.random() * (Game.WORLD.y - 256) + 128),
+                    new EnemyBlobAI())
+                    .createEnemy());
 	}
 
     int cnt = 0;
@@ -74,12 +75,16 @@ public class TileArena extends ApplicationAdapter {
 	}
 
     private void update(double delta) {
-        for (Entity o : Game.objects)
-            o.update(delta);
+        for (Iterator<Entity> it = Game.objects.listIterator(); it.hasNext();) {
+            Entity e  = it.next();
+            boolean alive = e.update(delta);
+            if (!alive)
+                it.remove();
+        }
         for (Iterator<Projectile> it = Game.projectiles.listIterator(); it.hasNext();) {
             Projectile p = it.next();
-            boolean inScreen = p.update(delta);
-            if (!inScreen)
+            boolean alive = p.update(delta);
+            if (!alive)
                 it.remove();
         }
         updateCameraPosition();

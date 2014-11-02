@@ -53,7 +53,7 @@ public abstract class Projectile extends Object {
                 if (e.isCollision(this)) {
                     if (alreadyHit.contains(e))
                         continue;
-                    e.hit();
+                    e.hit(damage);
                     alreadyHit.add(e);
                     hits--;
                     if (hits <= 0)

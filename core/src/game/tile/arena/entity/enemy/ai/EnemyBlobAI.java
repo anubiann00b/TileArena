@@ -2,11 +2,11 @@ package game.tile.arena.entity.enemy.ai;
 
 import game.tile.arena.util.Position;
 
-public class EnemyPlayerAI extends EnemyAI {
+public class EnemyBlobAI extends EnemyAI {
 
     Position currentMovement;
 
-    public EnemyPlayerAI() {
+    public EnemyBlobAI() {
         super();
         currentMovement = new Position(Math.random()-0.5, Math.random()-0.5);
     }

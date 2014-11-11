@@ -16,8 +16,8 @@ public class Position {
         this.y = y;
     }
 
-    public Position(int scale) {
-        this(scale, scale);
+    public Position(double dir) {
+        this(Math.cos(dir), Math.sin(dir));
     }
 
     public Position scale(float scale) { return new Position(x*scale, y*scale); }
@@ -48,6 +48,10 @@ public class Position {
 
     public double getDir() {
         return Math.atan2(y, x);
+    }
+
+    public double getDirTo(Position pos) {
+        return Math.atan2(pos.y-y, pos.x-x);
     }
 
     public boolean inWorld(int padding) {

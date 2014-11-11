@@ -6,6 +6,7 @@ import java.util.List;
 import game.tile.arena.Game;
 import game.tile.arena.entity.Entity;
 import game.tile.arena.entity.attack.Attack;
+import game.tile.arena.entity.attack.AttackList;
 import game.tile.arena.entity.enemy.ai.EnemyAI;
 import game.tile.arena.util.Position;
 
@@ -58,10 +59,6 @@ public class Enemy extends Entity {
 
     private EnemyAI ai;
 
-    private Attack currentAttack;
-    private int currentAttackIndex = -1;
-    private List<Attack> attackList = new LinkedList<Attack>();
-
     public Enemy(String filePrefix, Position pos, int animSpeed, int health, int speed, EnemyAI ai) {
         super(filePrefix, pos, animSpeed, Game.ENEMY, health, speed);
         this.ai = ai;
@@ -71,6 +68,7 @@ public class Enemy extends Entity {
     @Override
     public boolean update(double delta) {
         updatePosition(ai.getRelativePosition(), delta);
+        ai.attack();
         return health > 0;
     }
 }

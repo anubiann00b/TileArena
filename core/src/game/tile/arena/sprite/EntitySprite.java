@@ -18,7 +18,7 @@ public class EntitySprite {
     private int count;
 
     public EntitySprite(String filePrefix, int fps, int size) {
-        scale = new Position(size);
+        scale = new Position(size, size);
         animations = new Animation[4];
         animSpeed = fps;
         directionFacing = 0;

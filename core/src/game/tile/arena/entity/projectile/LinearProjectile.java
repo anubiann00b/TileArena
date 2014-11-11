@@ -45,6 +45,10 @@ public class LinearProjectile extends Projectile {
         this.movement = movement;
     }
 
+    public Position getCurrentMovement() {
+        return movement;
+    }
+
     @Override
     public boolean update(double delta) {
         pos = pos.addPolar(movement.scaleY(delta));

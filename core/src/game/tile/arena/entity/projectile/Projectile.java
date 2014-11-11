@@ -34,8 +34,8 @@ public abstract class Projectile extends Object {
         this.damage = damage;
     }
 
+    public abstract Position getCurrentMovement();
     public abstract boolean update(double delta);
-
     public abstract void render(SpriteBatch batch);
 
     public void draw(SpriteBatch batch, float dir) {

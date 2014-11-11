@@ -11,7 +11,8 @@ import java.util.Iterator;
 
 import game.tile.arena.entity.Entity;
 import game.tile.arena.entity.enemy.Enemy;
-import game.tile.arena.entity.enemy.ai.EnemyBlobAI;
+import game.tile.arena.entity.enemy.ai.EnemyDodgeAI;
+import game.tile.arena.entity.enemy.ai.EnemyRandomAI;
 import game.tile.arena.entity.projectile.Projectile;
 import game.tile.arena.util.MathHelper;
 import game.tile.arena.util.Position;
@@ -35,7 +36,7 @@ public class TileArena extends ApplicationAdapter {
         for (int i=0;i<50;i++)
             Game.entities.add(new Enemy.Builder("blob_green",
                     new Position(Math.random() * (Game.WORLD.x - 256) + 128, Math.random() * (Game.WORLD.y - 256) + 128),
-                    new EnemyBlobAI())
+                    new EnemyDodgeAI())
                     .createEnemy());
 	}
 

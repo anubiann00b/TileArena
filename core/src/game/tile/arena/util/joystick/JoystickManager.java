@@ -19,8 +19,12 @@ public class JoystickManager {
 
     private JoystickManager() {
         sticks = new Joystick[NUM_STICKS];
-        sticks[MOVEMENT] = new Joystick(new Position(250, 250), 100, "circle", "joystick_bg");
-        sticks[ATTACK] = new Joystick(new Position(Gdx.graphics.getWidth()-250, 250), 100, "circle", "joystick_bg");
+        sticks[MOVEMENT] = new Joystick(
+                new Position(Gdx.graphics.getWidth()*0.25, Gdx.graphics.getHeight()*0.25),
+                100, "circle", "joystick_bg");
+        sticks[ATTACK] = new Joystick(
+                new Position(Gdx.graphics.getWidth()*0.75, Gdx.graphics.getHeight()*0.25),
+                100, "circle", "joystick_bg");
     }
 
     public Joystick[] sticks;

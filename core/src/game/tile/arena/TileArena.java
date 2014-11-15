@@ -36,7 +36,7 @@ public class TileArena extends ApplicationAdapter {
         for (int i=0;i<50;i++)
             Game.entities.add(new Enemy.Builder("blob_green",
                     new Position(Math.random() * (Game.WORLD.x - 256) + 128, Math.random() * (Game.WORLD.y - 256) + 128),
-                    new EnemyDodgeAI())
+                    new EnemyRandomAI())
                     .createEnemy());
 	}
 

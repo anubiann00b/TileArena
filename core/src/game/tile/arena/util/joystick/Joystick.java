@@ -41,15 +41,19 @@ public class Joystick {
                 position = position.add(radius, 0);
                 break;
             case 1:
-                position = position.add(0, -radius);
+                position = position.add(0, radius);
                 break;
             case 2:
                 position = position.add(-radius, 0);
                 break;
             case 3:
-                position = position.add(0, radius);
+                position = position.add(0, -radius);
                 break;
         }
+    }
+
+    public void keyReleased(int dir) {
+        keyPressed((dir+2)%4);
     }
 
     public boolean onDown(Position pos, int pointer) {

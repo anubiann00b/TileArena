@@ -31,13 +31,22 @@ public class JoystickInput implements InputProcessor {
             joystick.keyPressed(3);
         else
             return false;
-        System.out.println("Keypress " + keycode);
         return true;
     }
 
     @Override
     public boolean keyUp(int keycode) {
-        return false;
+        if (keycode == KeyMap.RIGHT)
+            joystick.keyReleased(0);
+        else if (keycode == KeyMap.UP)
+            joystick.keyReleased(1);
+        else if (keycode == KeyMap.LEFT)
+            joystick.keyReleased(2);
+        else if (keycode == KeyMap.DOWN)
+            joystick.keyReleased(3);
+        else
+            return false;
+        return true;
     }
 
     @Override

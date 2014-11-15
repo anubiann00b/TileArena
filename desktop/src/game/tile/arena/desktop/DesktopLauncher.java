@@ -8,6 +8,6 @@ public class DesktopLauncher {
 
 	public static void main (String[] args) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		new LwjglApplication(new TileArena(), config);
+		new LwjglApplication(new TileArena(false), config);
 	}
 }

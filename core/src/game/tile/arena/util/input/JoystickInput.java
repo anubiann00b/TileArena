@@ -3,6 +3,7 @@ package game.tile.arena.util.input;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 
+import game.tile.arena.util.KeyMap;
 import game.tile.arena.util.Position;
 import game.tile.arena.util.joystick.Joystick;
 
@@ -20,7 +21,18 @@ public class JoystickInput implements InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
-        return false;
+        if (keycode == KeyMap.RIGHT)
+            joystick.keyPressed(0);
+        else if (keycode == KeyMap.UP)
+            joystick.keyPressed(1);
+        else if (keycode == KeyMap.LEFT)
+            joystick.keyPressed(2);
+        else if (keycode == KeyMap.DOWN)
+            joystick.keyPressed(3);
+        else
+            return false;
+        System.out.println("Keypress " + keycode);
+        return true;
     }
 
     @Override

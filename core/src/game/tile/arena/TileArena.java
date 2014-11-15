@@ -19,11 +19,17 @@ import game.tile.arena.util.Position;
 
 public class TileArena extends ApplicationAdapter {
 
+    public TileArena(boolean sticks) {
+        Game.DISPLAY_JOYSTICKS = sticks;
+    }
+
     SpriteBatch batch;
     BitmapFont font;
 
 	@Override
 	public void create() {
+        Game.init();
+
         font = new BitmapFont();
 
         Game.hudCam.position.set(Game.SCREEN.x/2, Game.SCREEN.y/2, 0);

@@ -33,7 +33,7 @@ public class JoystickManager {
     public final int ATTACK = 1;
 
     public Position getPosition(int stick) {
-        return sticks[stick].position.subtract(sticks[stick].center).scale(1f/sticks[stick].radius);
+        return sticks[stick].getStickPosition();
     }
 
     public void render(SpriteBatch batch, double delta) {

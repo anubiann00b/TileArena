@@ -3,8 +3,9 @@ package game.tile.arena.util.input;
 import com.badlogic.gdx.InputProcessor;
 
 import game.tile.arena.Game;
+import game.tile.arena.util.KeyMap;
 
-public class WeaponSwitchInput  implements InputProcessor {
+public class WeaponSwitchInput implements InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
@@ -18,6 +19,10 @@ public class WeaponSwitchInput  implements InputProcessor {
 
     @Override
     public boolean keyTyped(char character) {
+        if (character == KeyMap.WEAPON_SWITCH) {
+            Game.player.switchWeapon();
+            return true;
+        }
         return false;
     }
 

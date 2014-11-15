@@ -24,6 +24,7 @@ public class Position {
     public Position scale(double scale) { return scale((float)scale); }
     public Position subtract(Position pos) { return new Position(x-pos.x, y-pos.y); }
     public Position add(Position pos) { return new Position(x+pos.x, y+pos.y); }
+    public Position add(int nx, int ny) { return new Position(x+nx, y+ny); }
 
     public boolean inRange(float dist, Position pos) {
         return (pos.x-x)*(pos.x-x) + (pos.y-y)*(pos.y-y) < dist*dist;

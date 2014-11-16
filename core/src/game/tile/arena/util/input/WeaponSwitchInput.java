@@ -9,6 +9,10 @@ public class WeaponSwitchInput implements InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
+        if (keycode == KeyMap.WEAPON_SWITCH) {
+            Game.player.switchWeapon();
+            return true;
+        }
         return false;
     }
 
@@ -19,10 +23,6 @@ public class WeaponSwitchInput implements InputProcessor {
 
     @Override
     public boolean keyTyped(char character) {
-        if (character == KeyMap.WEAPON_SWITCH) {
-            Game.player.switchWeapon();
-            return true;
-        }
         return false;
     }
 

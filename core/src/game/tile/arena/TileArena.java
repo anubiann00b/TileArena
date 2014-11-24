@@ -11,7 +11,6 @@ import java.util.Iterator;
 
 import game.tile.arena.entity.Entity;
 import game.tile.arena.entity.enemy.Enemy;
-import game.tile.arena.entity.enemy.ai.EnemyDodgeAI;
 import game.tile.arena.entity.enemy.ai.EnemyRandomAI;
 import game.tile.arena.entity.projectile.Projectile;
 import game.tile.arena.util.MathHelper;
@@ -19,17 +18,11 @@ import game.tile.arena.util.Position;
 
 public class TileArena extends ApplicationAdapter {
 
-    public TileArena(boolean sticks) {
-        Game.DISPLAY_JOYSTICKS = sticks;
-    }
-
     SpriteBatch batch;
     BitmapFont font;
 
 	@Override
 	public void create() {
-        Game.init();
-
         font = new BitmapFont();
 
         Game.hudCam.position.set(Game.SCREEN.x/2, Game.SCREEN.y/2, 0);
@@ -73,7 +66,7 @@ public class TileArena extends ApplicationAdapter {
             p.render(batch);
 
         batch.setProjectionMatrix(Game.hudCam.combined);
-        Game.joysticks.render(batch, delta);
+        Game.input.render(batch, delta);
 
         font.draw(batch, "fps: " + Gdx.graphics.getFramesPerSecond(), 20, 30);
 

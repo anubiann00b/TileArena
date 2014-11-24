@@ -1,4 +1,4 @@
-package game.tile.arena.util.joystick;
+package game.tile.arena.util.controller;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -28,32 +28,11 @@ public class Joystick {
         bg = new Image(bgImg);
 
         inputProcessor = new JoystickInput(pos, size, this);
-        Game.input.addInputProcessor(inputProcessor);
+        Game.rawInput.addInputProcessor(inputProcessor);
     }
 
     public Position getStickPosition() {
         return position.subtract(center).scale(1d/radius);
-    }
-
-    public void keyPressed(int dir) {
-        switch (dir) {
-            case 0:
-                position = position.add(radius, 0);
-                break;
-            case 1:
-                position = position.add(0, radius);
-                break;
-            case 2:
-                position = position.add(-radius, 0);
-                break;
-            case 3:
-                position = position.add(0, -radius);
-                break;
-        }
-    }
-
-    public void keyReleased(int dir) {
-        keyPressed((dir+2)%4);
     }
 
     public boolean onDown(Position pos, int pointer) {
@@ -86,9 +65,7 @@ public class Joystick {
     }
 
     void renderStick(SpriteBatch batch, double delta) {
-        if(Game.DISPLAY_JOYSTICKS) {
-            bg.renderNoCamera(batch, center, radius / bg.getWidth());
-            stick.renderNoCamera(batch, position, 4);
-        }
+        bg.renderNoCamera(batch, center, radius / bg.getWidth());
+        stick.renderNoCamera(batch, position, 4);
     }
 }

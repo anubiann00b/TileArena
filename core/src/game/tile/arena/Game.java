@@ -12,7 +12,6 @@ import game.tile.arena.entity.projectile.Projectile;
 import game.tile.arena.util.Position;
 import game.tile.arena.util.controller.PlayerController;
 import game.tile.arena.util.input.InputManager;
-import game.tile.arena.util.controller.TouchController;
 import game.tile.arena.world.World;
 
 public class Game {

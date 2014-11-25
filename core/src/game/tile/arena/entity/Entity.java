@@ -68,8 +68,7 @@ public abstract class Entity implements Comparable<Entity> {
 
     @Override
     public int compareTo(Entity other) {
-        return Float.valueOf(pos.y).compareTo(other.pos.y);
-        //return hit == other.hit ? 0 : (hit?1:-1);
+        return -Float.valueOf(pos.y).compareTo(other.pos.y);
     }
 
     public void updatePosition(Position dp, double delta) {

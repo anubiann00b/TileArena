@@ -11,7 +11,6 @@ import java.util.Iterator;
 
 import game.tile.arena.entity.Entity;
 import game.tile.arena.entity.enemy.Enemy;
-import game.tile.arena.entity.enemy.ai.EnemyDodgeAI;
 import game.tile.arena.entity.enemy.ai.EnemyRandomAI;
 import game.tile.arena.entity.projectile.Projectile;
 import game.tile.arena.util.MathHelper;
@@ -67,7 +66,7 @@ public class TileArena extends ApplicationAdapter {
             p.render(batch);
 
         batch.setProjectionMatrix(Game.hudCam.combined);
-        Game.joysticks.render(batch, delta);
+        Game.input.render(batch, delta);
 
         font.draw(batch, "fps: " + Gdx.graphics.getFramesPerSecond(), 20, 30);
 

@@ -1,21 +1,13 @@
-package game.tile.arena.util.input;
+package game.tile.arena.util.controller;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 
-import game.tile.arena.util.Position;
-import game.tile.arena.util.controller.Joystick;
+public class MouseAttackInput implements InputProcessor {
 
-public class JoystickInput implements InputProcessor {
+    KeyboardController controller;
 
-    private final Position center;
-    private final int radius;
-    private final Joystick joystick;
-
-    public JoystickInput(Position pos, int size, Joystick j) {
-        center = pos;
-        radius = size;
-        joystick = j;
+    public MouseAttackInput(KeyboardController control) {
+        controller = control;
     }
 
     @Override
@@ -35,17 +27,17 @@ public class JoystickInput implements InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        return joystick.onDown(new Position(screenX, Gdx.graphics.getHeight() - screenY), pointer);
+        return controller.mouseClick(screenX, screenY, pointer, button);
     }
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        return joystick.onUp(new Position(screenX, Gdx.graphics.getHeight() - screenY), pointer);
+        return controller.mouseUp(screenX, screenY, button);
     }
 
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
-        return joystick.onDrag(new Position(screenX, Gdx.graphics.getHeight() - screenY), pointer);
+        return controller.mouseClick(screenX, screenY, pointer);
     }
 
     @Override

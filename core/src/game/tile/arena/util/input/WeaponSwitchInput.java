@@ -3,11 +3,18 @@ package game.tile.arena.util.input;
 import com.badlogic.gdx.InputProcessor;
 
 import game.tile.arena.Game;
+import game.tile.arena.util.Preferences;
 
-public class WeaponSwitchInput  implements InputProcessor {
+public class WeaponSwitchInput implements InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
+        if (Preferences.get().TOUCH_CONTROLS)
+            return false;
+        if (keycode == Preferences.get().WEAPON_SWITCH) {
+            Game.player.switchWeapon();
+            return true;
+        }
         return false;
     }
 
@@ -23,8 +30,11 @@ public class WeaponSwitchInput  implements InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        Game.player.switchWeapon();
-        return true;
+        if (Preferences.get().TOUCH_CONTROLS) {
+            Game.player.switchWeapon();
+            return true;
+        }
+        return false;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package game.tile.arena.util.joystick;
+package game.tile.arena.util.controller;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -23,11 +23,16 @@ public class Joystick {
         center = pos;
         position = pos;
         radius = size;
+
         stick = new Image(stickImg);
         bg = new Image(bgImg);
 
         inputProcessor = new JoystickInput(pos, size, this);
-        Game.input.addInputProcessor(inputProcessor);
+        Game.rawInput.addInputProcessor(inputProcessor);
+    }
+
+    public Position getStickPosition() {
+        return position.subtract(center).scale(1d/radius);
     }
 
     public boolean onDown(Position pos, int pointer) {

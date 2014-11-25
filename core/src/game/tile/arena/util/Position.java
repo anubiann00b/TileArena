@@ -23,7 +23,9 @@ public class Position {
     public Position scale(float scale) { return new Position(x*scale, y*scale); }
     public Position scale(double scale) { return scale((float)scale); }
     public Position subtract(Position pos) { return new Position(x-pos.x, y-pos.y); }
+    public Position subtract(float nx, float ny) { return new Position(x-nx, y-ny); }
     public Position add(Position pos) { return new Position(x+pos.x, y+pos.y); }
+    public Position add(float nx, float ny) { return new Position(x+nx, y+ny); }
 
     public boolean inRange(float dist, Position pos) {
         return (pos.x-x)*(pos.x-x) + (pos.y-y)*(pos.y-y) < dist*dist;
@@ -74,5 +76,14 @@ public class Position {
 
     public double magnitude() {
         return Math.sqrt(x*x + y*y);
+    }
+
+    @Override
+    public String toString() {
+        return x + " " + y;
+    }
+
+    public Position invertX() {
+        return new Position(-x, y);
     }
 }

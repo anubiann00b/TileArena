@@ -19,7 +19,7 @@ public class Player extends Entity {
         addAttack(new AttackBow.Builder().setFireTime(900).setSpreadShots(3).setSpreadAngle(5).create());
         addAttack(new AttackBow.Builder().setFireTime(60).setReloadTime(1200).setBarrageShots(3).setPierce(2).create());
         addAttack(new AttackBow.Builder().setFireTime(600).setPierce(2).create());
-        Game.input.addInputProcessor(new WeaponSwitchInput());
+        Game.rawInput.addInputProcessor(new WeaponSwitchInput());
     }
 
     public void switchWeapon() {
@@ -42,8 +42,8 @@ public class Player extends Entity {
 
     @Override
     public boolean update(double delta) {
-        updatePosition(Game.joysticks.getPosition(Game.joysticks.MOVEMENT), delta);
-        currentAttack.update(delta, Game.joysticks.getPosition(Game.joysticks.ATTACK), Game.ALLY);
+        updatePosition(Game.input.getMovement(), delta);
+        currentAttack.update(delta, Game.input.getAttack(), Game.ALLY);
         return true;
     }
 }

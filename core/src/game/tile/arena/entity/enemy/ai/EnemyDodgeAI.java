@@ -15,7 +15,7 @@ public class EnemyDodgeAI extends EnemyAI {
                 continue;
             double projectileDir = enemy.pos.getDirTo(p.pos);
             if (Math.abs(projectileDir - p.getCurrentMovement().x) < 90) {
-                current.scale(1/count).subtract(new Position(projectileDir)).scale(1/(count+1));
+                current = current.subtract(new Position(projectileDir).scale(0.1));
                 count++;
             }
         }

@@ -14,13 +14,16 @@ public class EnemyDodgeAI extends EnemyAI {
                 continue;
             float distance = enemy.pos.getDistance(p.pos);
             double projectileDir = enemy.pos.getDirTo(p.pos);
-            if (distance > 300)
+            if (distance > 150)
                 continue;
-            current = current.subtract(new Position(projectileDir).scale(0.1));
+            current = current.subtract(
+                    Position.findOrthogonalVector(p.pos, enemy.pos, p.getCurrentMovement().x)
+                            .normalize(0.5f)
+                            .scale(1-Math.sqrt(distance/300)) // scale by distance
+            );
         }
-        if (enemy.pos.getDistance(Game.player.pos) < 300) {
-            current = current.subtract(enemy.pos.subtract(Game.player.pos).normalize(-0.1f));
-        }
+        if (enemy.pos.getDistance(Game.player.pos) < 300)
+            current = current.add(enemy.pos.subtract(Game.player.pos).normalize(0.1f));
         return current;
     }
 }

@@ -16,6 +16,11 @@ public class Position {
         this.y = y;
     }
 
+    /**
+     * Constructs a unit vector in the specified direction.
+     *
+     * @param dir A direction, in radians.
+     */
     public Position(double dir) {
         this(Math.cos(dir), Math.sin(dir));
     }
@@ -94,5 +99,24 @@ public class Position {
     public Position normalize(float scale) {
         scale /= Math.max(Math.abs(x),Math.abs(y));
         return new Position(x*scale, y*scale);
+    }
+
+    /**
+     * Given a vector with position p and direction dir, and a point e, this method
+     * returns the orthogonal vector to p that intersects e.
+     *
+     * @param p The position of the vector
+     * @param e The position of the point
+     * @param theta The direction of the vector, in radians
+     * @return The orthogonal vector to p that goes through e
+     */
+    public static Position findOrthogonalVector(Position p, Position e, float theta) {
+        double normalTheta = theta + Math.PI/2;
+        double distance = (e.x - p.x)*Math.cos(normalTheta) + (e.y - p.y)*Math.sin(normalTheta);
+        if (distance < 0) { // That means the normal vector is in the wrong direction (towards e instead of away)
+            normalTheta = theta - Math.PI/2;
+            distance = -distance;
+        }
+        return new Position(normalTheta).scale(-distance);
     }
 }

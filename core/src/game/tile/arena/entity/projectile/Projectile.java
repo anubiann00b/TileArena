@@ -11,7 +11,7 @@ import game.tile.arena.entity.Entity;
 import game.tile.arena.sprite.Image;
 import game.tile.arena.util.Position;
 
-public abstract class Projectile extends Object {
+public abstract class Projectile {
 
     private static AtomicInteger idCounter = new AtomicInteger();
     public final int id;

@@ -28,7 +28,11 @@ public class Position {
     public Position add(float nx, float ny) { return new Position(x+nx, y+ny); }
 
     public boolean inRange(float dist, Position pos) {
-        return (pos.x-x)*(pos.x-x) + (pos.y-y)*(pos.y-y) < dist*dist;
+        return getDistance(pos) < dist*dist;
+    }
+
+    public float getDistance(Position pos) {
+        return (float) Math.sqrt((pos.x-x)*(pos.x-x) + (pos.y-y)*(pos.y-y));
     }
 
     public Position limit(float dist, Position pos) {
@@ -85,5 +89,10 @@ public class Position {
 
     public Position invertX() {
         return new Position(-x, y);
+    }
+
+    public Position normalize(float scale) {
+        scale /= Math.max(Math.abs(x),Math.abs(y));
+        return new Position(x*scale, y*scale);
     }
 }

@@ -105,6 +105,10 @@ public class Position {
         return new Position(x*scale, y*scale);
     }
 
+    public Position normalize() {
+        return normalize(1);
+    }
+
     /**
      * Given a vector with position p and direction dir, and a point e, this method
      * returns the orthogonal vector to p that intersects e.

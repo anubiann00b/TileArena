@@ -8,22 +8,17 @@ public class EnemyDodgeAI extends EnemyAI {
 
     @Override
     public Position getRelativePosition() {
-        Position current = new Position(0,0);
+        Position current = new Position();
         for (Projectile p : Game.projectiles) {
             if (p.orientation == enemy.orientation)
                 continue;
             float distance = enemy.pos.getDistance(p.pos);
-            double projectileDir = enemy.pos.getDirTo(p.pos);
             if (distance > 150)
                 continue;
-            current = current.subtract(
-                    Position.findOrthogonalVector(p.pos, enemy.pos, p.getCurrentMovement().x)
-                            .normalize(0.5f)
-                            .scale(1-Math.sqrt(distance/300)) // scale by distance
-            );
+            Position ortho = Position.findOrthogonalVector(p.pos, enemy.pos, p.getCurrentMovement().x);
+            double orthoDistance = ortho.magnitude();
+            current = current.subtract(ortho.normalize(1f).scale(1-Math.sqrt(orthoDistance/150)));
         }
-        if (enemy.pos.getDistance(Game.player.pos) < 300)
-            current = current.add(enemy.pos.subtract(Game.player.pos).normalize(0.1f));
         return current;
     }
 }

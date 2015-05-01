@@ -7,6 +7,10 @@ public class Position {
     public final float x;
     public final float y;
 
+    public Position() {
+        this(0, 0);
+    }
+
     public Position(double x, double y) {
         this((float)x, (float)y);
     }

@@ -8,13 +8,9 @@ import game.tile.arena.util.controller.Joystick;
 
 public class JoystickInput implements InputProcessor {
 
-    private final Position center;
-    private final int radius;
     private final Joystick joystick;
 
-    public JoystickInput(Position pos, int size, Joystick j) {
-        center = pos;
-        radius = size;
+    public JoystickInput(Joystick j) {
         joystick = j;
     }
 

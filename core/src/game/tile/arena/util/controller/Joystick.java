@@ -27,7 +27,7 @@ public class Joystick {
         stick = new Image(stickImg);
         bg = new Image(bgImg);
 
-        inputProcessor = new JoystickInput(pos, size, this);
+        inputProcessor = new JoystickInput(this);
         Game.rawInput.addInputProcessor(inputProcessor);
     }
 

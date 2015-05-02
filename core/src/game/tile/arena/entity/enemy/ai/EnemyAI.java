@@ -12,7 +12,5 @@ public abstract class EnemyAI {
     }
 
     public abstract Position getRelativePosition();
-    public void attack() {
-
-    }
+    public void attack() { }
 }

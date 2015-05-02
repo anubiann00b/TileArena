@@ -12,12 +12,12 @@ import game.tile.arena.entity.projectile.Projectile;
 import game.tile.arena.util.Position;
 import game.tile.arena.util.controller.PlayerController;
 import game.tile.arena.util.input.InputManager;
-import game.tile.arena.util.controller.TouchController;
 import game.tile.arena.world.World;
 
 public class Game {
 
     public static final int FPS = 60;
+    public static final boolean DEBUG = false;
 
     public static final boolean ALLY = true;
     public static final boolean ENEMY = false;

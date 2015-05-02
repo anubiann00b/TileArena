@@ -1,16 +1,23 @@
 package game.tile.arena.sprite;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import game.tile.arena.util.Position;
 
 public class Image {
 
-    Texture texture;
+    final Texture texture;
+    final Pixmap pixmap;
+    public final ImageMask mask;
 
     public Image(String file) {
-        texture = new Texture(file + ".png");
+        pixmap = new Pixmap(Gdx.files.internal(file + ".png"));
+        texture = new Texture(pixmap);
+        mask = new ImageMask(new TextureRegion(texture), pixmap);
     }
 
     public void renderNoCenter(SpriteBatch batch, Position pos, float scale) {
@@ -43,6 +50,10 @@ public class Image {
     }
 
     public int getWidth() {
+        return texture.getWidth();
+    }
+
+    public int getHeight() {
         return texture.getWidth();
     }
 }

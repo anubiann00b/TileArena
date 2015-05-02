@@ -7,6 +7,10 @@ public class Position {
     public final float x;
     public final float y;
 
+    public Position() {
+        this(0, 0);
+    }
+
     public Position(double x, double y) {
         this((float)x, (float)y);
     }
@@ -16,6 +20,11 @@ public class Position {
         this.y = y;
     }
 
+    /**
+     * Constructs a unit vector in the specified direction.
+     *
+     * @param dir A direction, in radians.
+     */
     public Position(double dir) {
         this(Math.cos(dir), Math.sin(dir));
     }
@@ -28,7 +37,11 @@ public class Position {
     public Position add(float nx, float ny) { return new Position(x+nx, y+ny); }
 
     public boolean inRange(float dist, Position pos) {
-        return (pos.x-x)*(pos.x-x) + (pos.y-y)*(pos.y-y) < dist*dist;
+        return getDistance(pos) < dist*dist;
+    }
+
+    public float getDistance(Position pos) {
+        return (float) Math.sqrt((pos.x-x)*(pos.x-x) + (pos.y-y)*(pos.y-y));
     }
 
     public Position limit(float dist, Position pos) {
@@ -85,5 +98,33 @@ public class Position {
 
     public Position invertX() {
         return new Position(-x, y);
+    }
+
+    public Position normalize(float scale) {
+        scale /= Math.max(Math.abs(x),Math.abs(y));
+        return new Position(x*scale, y*scale);
+    }
+
+    public Position normalize() {
+        return normalize(1);
+    }
+
+    /**
+     * Given a vector with position p and direction dir, and a point e, this method
+     * returns the orthogonal vector to p that intersects e.
+     *
+     * @param p The position of the vector
+     * @param e The position of the point
+     * @param theta The direction of the vector, in radians
+     * @return The orthogonal vector to p that goes through e
+     */
+    public static Position findOrthogonalVector(Position p, Position e, float theta) {
+        double normalTheta = theta + Math.PI/2;
+        double distance = (e.x - p.x)*Math.cos(normalTheta) + (e.y - p.y)*Math.sin(normalTheta);
+        if (distance < 0) { // That means the normal vector is in the wrong direction (towards e instead of away)
+            normalTheta = theta - Math.PI/2;
+            distance = -distance;
+        }
+        return new Position(normalTheta).scale(-distance);
     }
 }

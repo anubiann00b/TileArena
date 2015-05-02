@@ -17,6 +17,7 @@ import game.tile.arena.world.World;
 public class Game {
 
     public static final int FPS = 60;
+    public static final boolean DEBUG = false;
 
     public static final boolean ALLY = true;
     public static final boolean ENEMY = false;

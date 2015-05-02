@@ -22,12 +22,12 @@ public class EnemyDodgeAI extends EnemyAI {
                 continue;
             Position ortho = Position.findOrthogonalVector(p.pos, enemy.pos, p.getCurrentMovement().x);
             double orthoDistance = ortho.magnitude();
-            current = current.subtract(ortho.normalize().scale(1-Math.sqrt(orthoDistance/150)));
+            current = current.subtract(ortho.normalize(2).scale(1-Math.sqrt(orthoDistance/150)));
             count++;
         }
         if (time >= totalTime) {
             time = 0;
-            totalTime = (int) (Math.random()*100);
+            totalTime = (int) (Math.random()*100)+100;
             currentMovement = new Position(2*Math.PI*Math.random());
         }
         if (count == 0) {

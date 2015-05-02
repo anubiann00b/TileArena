@@ -45,6 +45,7 @@ public abstract class Projectile {
     public void draw(SpriteBatch batch, float scale, float dir) {
         if (pos.inView(64))
             sprite.render(batch, pos, scale, dir);
+        sprite.mask.projectileCollisionRender(batch, this);
     }
 
     protected boolean checkCollision() {

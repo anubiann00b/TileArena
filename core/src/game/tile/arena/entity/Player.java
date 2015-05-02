@@ -15,10 +15,7 @@ public class Player extends Entity {
 
     public Player(Position p) {
         super("player", p, 166, Game.ALLY, 20, 8);
-        addAttack(new AttackBow.Builder().setFireTime(1200).setSpreadShots(5).setSpreadAngle(25).create());
-        addAttack(new AttackBow.Builder().setFireTime(900).setSpreadShots(3).setSpreadAngle(5).create());
-        addAttack(new AttackBow.Builder().setFireTime(60).setReloadTime(1200).setBarrageShots(3).setPierce(2).create());
-        addAttack(new AttackBow.Builder().setFireTime(600).setPierce(2).create());
+        addAttack(new AttackBow.Builder().setFireTime(600).create());
         Game.rawInput.addInputProcessor(new WeaponSwitchInput());
     }
 

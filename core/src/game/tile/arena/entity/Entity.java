@@ -21,12 +21,12 @@ public abstract class Entity implements Comparable<Entity> {
     public Position pos;
 
     private Position dpos = new Position(0, 0);
-    protected EntitySprite sprite;
+    public EntitySprite sprite;
     protected boolean moving;
-    protected int dir = 1;
+    protected int dir = 8;
     protected int lastDir;
 
-    protected float speed = 8f;
+    protected float speed = 1f;
     protected boolean hit = false;
     protected int colorCounter = 0;
     protected int health;
@@ -51,13 +51,22 @@ public abstract class Entity implements Comparable<Entity> {
                 batch.setColor(1f, 1f, 1f, 1f);
             else
                 batch.setColor(0.5f, 0f, 0f, 1f);
+//            if (Game.player.isCollision(this))
+//                batch.setColor(0.5f, 0f, 0f, 1f);
             sprite.render(batch, (int)dpos.magnitude(), pos);
         }
         hit = false;
+        batch.end();
+        sprite.getMask().render(pos);
+        batch.begin();
     }
 
     public boolean isCollision(Projectile p) {
         return sprite.isCollision(p, pos);
+    }
+
+    public boolean isCollision(Entity e) {
+        return sprite.isCollision(e, pos);
     }
 
     public void hit(int damage) {
